@@ -18,6 +18,7 @@ def delete_ipfix_export(config, params):
     ipfix_collector_ip = params.get('ipfix_collector_ip')
 
     if not endpoint or not host_source_ip:
+        logger.exception('Missing required input')
         raise ConnectorError('Missing required input')
 
     endpoint = f'{endpoint}/ftnt-{host_source_ip}-{ipfix_collector_ip}'

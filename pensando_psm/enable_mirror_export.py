@@ -24,6 +24,7 @@ def enable_mirror_export(config, params):
     erspan_match_protocols = params.get('erspan_match_protocols')
 
     if not all((endpoint, host_source_ip, erspan_id, erspan_type, erspan_collector_ip)):
+        logger.exception('Missing required input')
         raise ConnectorError('Missing required input')
 
     erspan_name = f'ftnt-{host_source_ip}-{erspan_collector_ip}'

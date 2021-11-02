@@ -25,6 +25,7 @@ def enable_ipfix_export(config, params):
         (endpoint, host_source_ip, interval, template_interval, ipfix_collector_ip,
          ipfix_collector_protocol, ipfix_collector_port)
     ):
+        logger.exception('Missing required input')
         raise ConnectorError('Missing required input')
 
     ipfix_name = f'ftnt-{host_source_ip}-{ipfix_collector_ip}'

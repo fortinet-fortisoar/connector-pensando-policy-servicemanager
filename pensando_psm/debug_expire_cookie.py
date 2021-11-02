@@ -1,5 +1,7 @@
-from .utils import _debug_expire_cookie
+"""debug expire cookie"""
+
 from connectors.core.connector import get_logger
+from .utils import _debug_expire_cookie
 from .constants import LOGGER_NAME
 
 

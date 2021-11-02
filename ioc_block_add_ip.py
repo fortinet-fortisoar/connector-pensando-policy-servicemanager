@@ -97,17 +97,17 @@ def ioc_block_add_ip(config, params):
         logger.exception('Expected two rules, but found one. Rule update aborted.')
         raise ConnectorError('Expected two rules, but found one. Rule update aborted.')
 
+    existing_ioc_list = []
+
     # ensure rules are contiguous
     if match_list:
         if match_list[1] != match_list[0] + 1:
             logger.exception('Rules are not contiguous. Rule update aborted.')
             raise ConnectorError('Rules are not contiguous. Rule update aborted.')
 
-    # grab the IOC list and run it through a dict to remove any duplicates.
-    # using dict.fromkeys instead of set to preserve order of IP addresses.
-    # using collections.deque to keep list to 900 items and FIFO old ones.
-    existing_ioc_list = []
-    if match_list:
+        # grab the IOC list and run it through a dict to remove any duplicates.
+        # using dict.fromkeys instead of set to preserve order of IP addresses.
+        # using collections.deque to keep list to 900 items and FIFO old ones.
         if SENTINEL_IP in rules[match_list[0]]['to-ip-addresses']:
             existing_ioc_list = rules[match_list[0]]['to-ip-addresses']
         else:

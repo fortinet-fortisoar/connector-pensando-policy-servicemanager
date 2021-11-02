@@ -19,10 +19,9 @@ class SampleRest(Connector):
         return func(config, params)
 
     def execute(self, config, operation, params, *args, **kwargs):
-        # return supported_operations.get(operation)(config, params)
-        
         # returning dev_execute during development
-        return self.dev_execute(config, operation, params)
+        # return self.dev_execute(config, operation, params)
+        return supported_operations.get(operation)(config, params)
 
     def check_health(self, config=None, *args, **kwargs):
         return health_check(config, *args, **kwargs)

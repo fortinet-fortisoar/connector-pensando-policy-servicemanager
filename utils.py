@@ -19,7 +19,6 @@ def invoke_rest_endpoint(config, endpoint, method='GET', data=None, headers=None
 
     # check if we need to login
     _get_state()
-    # logger.info(f'rest globals: {globals()}\nlocals: {locals()}')
 
     if not cookie_expiration:
         logger.info('Authentication cookie not found. Logging in.')
@@ -71,8 +70,6 @@ def _login(config):
     """Returns True if login succeeds"""
     global session
     global cookie_expiration
-
-    # logger.info(f'pre-login globals: {globals()}\nlocals: {locals()}')
 
     headers = {'accept': 'application/json'}
     server_address = config.get('server_address')

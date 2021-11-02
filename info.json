@@ -387,7 +387,7 @@
                     "type": "text",
                     "name": "erspan_match_dest_ip",
                     "value": "",
-                    "description": "Destination IPs to match for mirrored packets. Separate multiple values with commas. Example: 10.1.1.1, 192.168.1.1"
+                    "description": "Destination IPs to match for mirrored packets. Can be a comma seperated list or a JSON Array. e.g. '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]'"
                 },
                 {
                     "title": "Match Protocols and Ports",
@@ -397,7 +397,7 @@
                     "type": "text",
                     "name": "erspan_match_protocols",
                     "value": "",
-                    "description": "Protocols and ports/port ranges to match for mirrored packets. Separate multiple values with commas. Example: any, icmp, udp/500, tcp/80-88"
+                    "description": "Protocols and ports/port ranges to match for mirrored packets. Can be a comma seperated list or a JSON Array. e.g. 'any, icmp, udp/500, tcp/80-88' or '[\"any\", \"icmp, udp/500\", \"tcp/80-88\"]'"
                 }
             ],
             "output_schema": {

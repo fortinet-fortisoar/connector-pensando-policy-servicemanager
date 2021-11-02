@@ -8,6 +8,7 @@ from requests import Request
 from connectors.core.connector import get_logger, ConnectorError
 from .constants import LOGGER_NAME, TMP_FILE_ROOT
 
+
 logger = get_logger(LOGGER_NAME)
 
 

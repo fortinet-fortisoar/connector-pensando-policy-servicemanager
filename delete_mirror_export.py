@@ -1,5 +1,7 @@
-from .utils import invoke_rest_endpoint
+"""delete_mirror_export operation """
+
 from connectors.core.connector import get_logger, ConnectorError
+from .utils import invoke_rest_endpoint
 from .constants import LOGGER_NAME
 logger = get_logger(LOGGER_NAME)
 

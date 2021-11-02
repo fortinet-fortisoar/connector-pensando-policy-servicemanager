@@ -1,3 +1,5 @@
+"""unisolate_host operation"""
+
 from connectors.core.connector import get_logger, ConnectorError
 from .constants import LOGGER_NAME
 from .get_network_security_policies import get_network_security_policies
@@ -8,6 +10,10 @@ logger = get_logger(LOGGER_NAME)
 
 
 def unisolate_host(config, params):
+    """Will delete two NetworkSecurityPolicy rules under an existing Policy.
+       Deletes two rules - one to block all inbound traffic to the host and one
+       to block all outbound traffic from the host.
+    """
     tenant = config.get('tenant')
     host_source_ip = params.get('host_source_ip')
 

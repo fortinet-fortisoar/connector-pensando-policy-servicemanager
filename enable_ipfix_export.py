@@ -1,5 +1,7 @@
-from .utils import invoke_rest_endpoint
+"""enable_ipfix_export operation """
+
 from connectors.core.connector import get_logger, ConnectorError
+from .utils import invoke_rest_endpoint
 from .constants import LOGGER_NAME
 logger = get_logger(LOGGER_NAME)
 
@@ -19,75 +21,77 @@ def enable_ipfix_export(config, params):
     ipfix_collector_protocol = params.get('ipfix_collector_protocol')
     ipfix_collector_port = params.get('ipfix_collector_port')
 
-    if (not endpoint or not host_source_ip or not interval or not template_interval
-      or not ipfix_collector_ip or not ipfix_collector_protocol or not ipfix_collector_port):
+    if not all(
+        (endpoint, host_source_ip, interval, template_interval, ipfix_collector_ip,
+         ipfix_collector_protocol, ipfix_collector_port)
+    ):
         raise ConnectorError('Missing required input')
 
     ipfix_name = f'ftnt-{host_source_ip}-{ipfix_collector_ip}'
     transport = f'{ipfix_collector_protocol}/{ipfix_collector_port}'
 
     request_body = {
-      "kind": None,
-      "api-version": None,
-      "meta": {
-        "name": ipfix_name,
-        "tenant": tenant or None,
-        "namespace": None,
-        "generation-id": None,
-        "resource-version": None,
-        "uuid": None,
-        "labels": None,
-        "self-link": None
-      },
-      "spec": {
-        "vrf-name": None,
-        "interval": interval,
-        "template-interval": template_interval,
-        "format": "ipfix",
-        "match-rules": [
-          {
-            "source": {
-              "ip-addresses": [
-                host_source_ip
-              ]
-            },
-            "destination": {
-              "ip-addresses": [
-                "0.0.0.0/0"
-              ]
-            },
-            "app-protocol-selectors": {
-              "proto-ports": [
-                "any"
-              ]
-            }
-          },
-          {
-            "source": {
-              "ip-addresses": [
-                "0.0.0.0/0"
-              ]
-            },
-            "destination": {
-              "ip-addresses": [
-                host_source_ip
-              ]
-            },
-            "app-protocol-selectors": {
-              "proto-ports": [
-                "any"
-              ]
-            }
-          }
-        ],
-        "exports": [
-          {
-            "destination": ipfix_collector_ip,
-            "gateway": ipfix_collector_gw_ip,
-            "transport": transport
-          }
-        ]
-      }
+        "kind": None,
+        "api-version": None,
+        "meta": {
+            "name": ipfix_name,
+            "tenant": tenant or None,
+            "namespace": None,
+            "generation-id": None,
+            "resource-version": None,
+            "uuid": None,
+            "labels": None,
+            "self-link": None
+        },
+        "spec": {
+            "vrf-name": None,
+            "interval": interval,
+            "template-interval": template_interval,
+            "format": "ipfix",
+            "match-rules": [
+                {
+                    "source": {
+                        "ip-addresses": [
+                            host_source_ip
+                        ]
+                    },
+                    "destination": {
+                        "ip-addresses": [
+                            "0.0.0.0/0"
+                        ]
+                    },
+                    "app-protocol-selectors": {
+                        "proto-ports": [
+                            "any"
+                        ]
+                    }
+                },
+                {
+                    "source": {
+                        "ip-addresses": [
+                            "0.0.0.0/0"
+                        ]
+                    },
+                    "destination": {
+                        "ip-addresses": [
+                            host_source_ip
+                        ]
+                    },
+                    "app-protocol-selectors": {
+                        "proto-ports": [
+                            "any"
+                        ]
+                    }
+                }
+            ],
+            "exports": [
+                {
+                    "destination": ipfix_collector_ip,
+                    "gateway": ipfix_collector_gw_ip,
+                    "transport": transport
+                }
+            ]
+        }
     }
 
     api_response = invoke_rest_endpoint(config, endpoint, 'POST', request_body)

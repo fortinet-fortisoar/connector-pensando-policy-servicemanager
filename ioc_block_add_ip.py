@@ -1,3 +1,5 @@
+"""ioc_block_add_ip operation"""
+
 from collections import deque
 from connectors.core.connector import get_logger, ConnectorError
 from .constants import LOGGER_NAME, SENTINEL_IP
@@ -92,8 +94,8 @@ def ioc_block_add_ip(config, params):
 
     # check length of match_list to see if there two or more matches. if not fail gracefully.
     if len(match_list) == 1:
-        logger.exception(f'Expected two rules, but found one. Rule update aborted.')
-        raise ConnectorError(f'Expected two rules, but found one. Rule update aborted.')
+        logger.exception('Expected two rules, but found one. Rule update aborted.')
+        raise ConnectorError('Expected two rules, but found one. Rule update aborted.')
 
     # ensure rules are contiguous
     if match_list:

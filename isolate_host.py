@@ -1,3 +1,5 @@
+"""isolate_host operation"""
+
 from connectors.core.connector import get_logger, ConnectorError
 from .constants import LOGGER_NAME
 from .get_network_security_policies import get_network_security_policies

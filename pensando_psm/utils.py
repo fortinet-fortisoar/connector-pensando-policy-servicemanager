@@ -20,7 +20,7 @@ class PensandoState():
         self.cookie_expiration = cookie_expiration
 
 
-pensando = PensandoState(session=requests.Session(), cookie_expiration=None)
+p_state = PensandoState(session=requests.Session(), cookie_expiration=None)
 
 
 def invoke_rest_endpoint(config, endpoint, method='GET', data=None, headers=None):
@@ -31,10 +31,10 @@ def invoke_rest_endpoint(config, endpoint, method='GET', data=None, headers=None
     # check if we need to login
     _get_state()
 
-    if not pensando.cookie_expiration:
+    if not p_state.cookie_expiration:
         logger.info('Authentication cookie not found. Logging in.')
         _login(config)
-    elif pensando.cookie_expiration and datetime.fromtimestamp(pensando.cookie_expiration) < datetime.now():
+    elif p_state.cookie_expiration and datetime.fromtimestamp(p_state.cookie_expiration) < datetime.now():
         logger.info('Authentication cookie expired. Logging in.')
         _login(config)
 
@@ -47,14 +47,15 @@ def invoke_rest_endpoint(config, endpoint, method='GET', data=None, headers=None
     verify_ssl = config.get('verify_ssl', True)
 
     if not server_address or not username or not password or not tenant:
+        logger.exception('Missing required parameters')
         raise ConnectorError('Missing required parameters')
 
     url = f'{protocol}://{server_address}:{port}{endpoint}'
 
     try:
         req = Request(method, url, json=data, headers=headers)
-        prepped = pensando.session.prepare_request(req)
-        response = pensando.session.send(prepped, verify=verify_ssl)
+        prepped = p_state.session.prepare_request(req)
+        response = p_state.session.send(prepped, verify=verify_ssl)
         logger.info(f'REST request sent: {url}')
 
     except Exception as ex:
@@ -109,10 +110,10 @@ def _login(config):
 
     _get_state()
     req = Request('POST', url, json=data, headers=headers)
-    prepped = pensando.session.prepare_request(req)
+    prepped = p_state.session.prepare_request(req)
 
     try:
-        response = pensando.session.send(prepped, verify=verify_ssl)
+        response = p_state.session.send(prepped, verify=verify_ssl)
         logger.info('Login: Authentication credentials sent.')
 
     except Exception as ex:
@@ -128,15 +129,15 @@ def _login(config):
         raise ConnectorError(f'Login Failed - Bad Response Code: {response.status_code} - {response.content}')
 
     cookie_found = False
-    for cookie in pensando.session.cookies:
+    for cookie in p_state.session.cookies:
         if cookie.name == 'sid':
             cookie_found = True
-            pensando.cookie_expiration = cookie.expires
+            p_state.cookie_expiration = cookie.expires
             _set_state()
             break
 
     if cookie_found:
-        expiration_str = datetime.fromtimestamp(pensando.cookie_expiration).isoformat()
+        expiration_str = datetime.fromtimestamp(p_state.cookie_expiration).isoformat()
         logger.info(f'Login Success - Authentication expires: {expiration_str}')
         return True
 
@@ -148,10 +149,10 @@ def _get_state():
     """Load global state from disk and unpickle"""
     try:
         with open(os.path.join(TMP_FILE_ROOT, 'pensando_state_session'), 'rb') as file:
-            pensando.session = pickle.load(file)
+            p_state.session = pickle.load(file)
 
         with open(os.path.join(TMP_FILE_ROOT, 'pensando_state_cookie_expiration'), 'rb') as file:
-            pensando.cookie_expiration = pickle.load(file)
+            p_state.cookie_expiration = pickle.load(file)
 
         logger.info('Loaded session state successfully')
 
@@ -162,13 +163,13 @@ def _get_state():
 def _set_state():
     """Pickle global state and save to disk"""
     try:
-        with open(os.path.join(TMP_FILE_ROOT, 'pensando_state_session'), 'wb') as file:
+        with open(os.path.join(TMP_FILE_ROOT, 'pensando_psm_state_session'), 'wb') as file:
             # Pickle the Requests Session() object
-            pickle.dump(pensando.session, file, pickle.HIGHEST_PROTOCOL)
+            pickle.dump(p_state.session, file, pickle.HIGHEST_PROTOCOL)
 
-        with open(os.path.join(TMP_FILE_ROOT, 'pensando_state_cookie_expiration'), 'wb') as file:
+        with open(os.path.join(TMP_FILE_ROOT, 'pensando_psm_state_cookie_expiration'), 'wb') as file:
             # Pickle the cookie_expiration variable
-            pickle.dump(pensando.cookie_expiration, file, pickle.HIGHEST_PROTOCOL)
+            pickle.dump(p_state.cookie_expiration, file, pickle.HIGHEST_PROTOCOL)
 
     except Exception as ex:
         logger.exception(f'Error saving session state: {ex}')
@@ -179,8 +180,8 @@ def _set_state():
 
 def _debug_remove_session_state():
     try:
-        os.remove(os.path.join(TMP_FILE_ROOT, 'pensando_state_session'))
-        os.remove(os.path.join(TMP_FILE_ROOT, 'pensando_state_cookie_expiration'))
+        os.remove(os.path.join(TMP_FILE_ROOT, 'pensando_psm_state_session'))
+        os.remove(os.path.join(TMP_FILE_ROOT, 'pensando_psm_state_cookie_expiration'))
         logger.info('Debug: Session state removed from disk')
     except Exception as ex:
         logger.warning(f'Debug: Error removing Session State from disk: {ex}')
@@ -190,10 +191,10 @@ def _debug_reset_session_state():
     try:
         reset_session = requests.Session()
         reset_cookie_expiration = None
-        with open(os.path.join(TMP_FILE_ROOT, 'pensando_state_session'), 'wb') as file:
+        with open(os.path.join(TMP_FILE_ROOT, 'pensando_psm_state_session'), 'wb') as file:
             pickle.dump(reset_session, file, pickle.HIGHEST_PROTOCOL)
 
-        with open(os.path.join(TMP_FILE_ROOT, 'pensando_state_cookie_expiration'), 'wb') as file:
+        with open(os.path.join(TMP_FILE_ROOT, 'pensando_psm_state_cookie_expiration'), 'wb') as file:
             pickle.dump(reset_cookie_expiration, file, pickle.HIGHEST_PROTOCOL)
         logger.info('Debug: Session state reset on disk')
     except Exception as ex:
@@ -206,10 +207,10 @@ def _debug_expire_cookie(config):
 
     # then set the expiration to now - 100
     try:
-        for cookie in pensando.session.cookies:
+        for cookie in p_state.session.cookies:
             if cookie.name == 'sid':
                 cookie.expires = int(datetime.timestamp(datetime.now())) - 100
-                pensando.cookie_expiration = cookie.expires
+                p_state.cookie_expiration = cookie.expires
                 _set_state()
                 logger.info('Debug: Session cookie expired on disk')
     except Exception as ex:

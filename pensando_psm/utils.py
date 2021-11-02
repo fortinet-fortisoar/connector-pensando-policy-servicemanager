@@ -13,7 +13,7 @@ logger = get_logger(LOGGER_NAME)
 
 
 class PensandoState():
-    """Keeps session state, including the session cookie and cookie expiration value """
+    """Keeps session state, including the session cookie and cookie expiration value"""
 
     def _init_(self, session=None, cookie_expiration=None):
         self.session = session
@@ -148,10 +148,10 @@ def _login(config):
 def _get_state():
     """Load global state from disk and unpickle"""
     try:
-        with open(os.path.join(TMP_FILE_ROOT, 'pensando_state_session'), 'rb') as file:
+        with open(os.path.join(TMP_FILE_ROOT, 'pensando_psm_state_session'), 'rb') as file:
             p_state.session = pickle.load(file)
 
-        with open(os.path.join(TMP_FILE_ROOT, 'pensando_state_cookie_expiration'), 'rb') as file:
+        with open(os.path.join(TMP_FILE_ROOT, 'pensando_psm_state_cookie_expiration'), 'rb') as file:
             p_state.cookie_expiration = pickle.load(file)
 
         logger.info('Loaded session state successfully')

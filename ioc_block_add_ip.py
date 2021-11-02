@@ -2,7 +2,7 @@ from collections import deque
 from connectors.core.connector import get_logger, ConnectorError
 from .constants import LOGGER_NAME, SENTINEL_IP
 from .get_network_security_policies import get_network_security_policies
-from .utils import invoke_rest_endpoint
+from .utils import invoke_rest_endpoint, normalize_list_input
 
 
 logger = get_logger(LOGGER_NAME)
@@ -60,9 +60,7 @@ def ioc_block_add_ip(config, params):
     ioc_ip = params.get('ioc_ip')
 
     # ioc_ip can be a comma separated string or a list object. Convert to list if a string.
-    if isinstance(ioc_ip, str):
-        ioc_ip = [ip.strip() for ip in ioc_ip.split(',')]
-        ioc_ip = list(filter(None, ioc_ip))
+    ioc_ip = normalize_list_input(ioc_ip)
 
     if not ioc_ip:
         logger.exception('IOC IP field is required but blank.')

@@ -1,4 +1,4 @@
-from .utils import invoke_rest_endpoint
+from .utils import invoke_rest_endpoint, normalize_list_input
 from connectors.core.connector import get_logger, ConnectorError
 from .constants import LOGGER_NAME
 logger = get_logger(LOGGER_NAME)
@@ -26,11 +26,9 @@ def enable_mirror_export(config, params):
 
     erspan_name = f'ftnt-{host_source_ip}-{erspan_collector_ip}'
 
-    erspan_match_dest_ip = [ip.strip() for ip in erspan_match_dest_ip.split(',')]
-    erspan_match_dest_ip = list(filter(None, erspan_match_dest_ip))
-
-    erspan_match_protocols = [prot.strip() for prot in erspan_match_protocols.split(',')]
-    erspan_match_protocols = list(filter(None, erspan_match_protocols))
+    # user input can be a comma separated string or a list object. Convert to list if a string.
+    erspan_match_dest_ip = normalize_list_input(erspan_match_dest_ip)
+    erspan_match_protocols = normalize_list_input(erspan_match_protocols)
 
     logger.info(f'erspan_name = {erspan_name}')
     logger.info(f'erspan_match_dest_ip = {erspan_match_dest_ip}')

@@ -75,6 +75,15 @@ def invoke_rest_endpoint(config, endpoint, method='GET', data=None, headers=None
     raise ConnectorError(f'Request error: {response.status_code} - {response.content}')
 
 
+def normalize_list_input(user_input):
+    """user_input can be a comma separated string or a list object. Convert to list if a string. """
+    if isinstance(user_input, str):
+        result = [prot.strip() for prot in user_input.split(',')]
+        return list(filter(None, result))
+
+    return user_input
+
+
 def _login(config):
     """Returns True if login succeeds"""
     headers = {'accept': 'application/json'}

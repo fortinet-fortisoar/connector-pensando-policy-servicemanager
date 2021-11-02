@@ -80,7 +80,7 @@ def invoke_rest_endpoint(config, endpoint, method='GET', data=None, headers=None
 def normalize_list_input(user_input):
     """user_input can be a comma separated string or a list object. Convert to list if a string. """
     if isinstance(user_input, str):
-        result = [prot.strip() for prot in user_input.split(',')]
+        result = [i.strip() for i in user_input.split(',')]
         return list(filter(None, result))
 
     return user_input

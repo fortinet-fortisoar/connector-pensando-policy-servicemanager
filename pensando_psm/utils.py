@@ -15,7 +15,7 @@ logger = get_logger(LOGGER_NAME)
 class PensandoState():
     """Keeps session state, including the session cookie and cookie expiration value"""
 
-    def _init_(self, session=None, cookie_expiration=None):
+    def __init__(self, session=None, cookie_expiration=None):
         self.session = session
         self.cookie_expiration = cookie_expiration
 

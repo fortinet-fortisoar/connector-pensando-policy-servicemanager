@@ -123,7 +123,7 @@ def ioc_block_remove_ip(config, params):
 
     new_ioc_list = list(dict.fromkeys(existing_ioc_list))
 
-    # remove IP supplied IP addresses from the list
+    # remove user supplied IP addresses from the list
     for ip in ioc_ip:
         try:
             new_ioc_list.remove(ip)

@@ -36,24 +36,24 @@ def unisolate_host(config, params):
     match_list = []
     for index, rule in enumerate(rules):
         if all(
-                (
-                    rule['proto-ports'][0]['protocol'] == 'any',
-                    rule['proto-ports'][0]['ports'] == '',
-                    rule['action'] == 'deny',
-                    rule['from-ip-addresses'] == [host_source_ip],
-                    rule['to-ip-addresses'] == ['0.0.0.0/0']
-                )
+            (
+                rule['proto-ports'][0]['protocol'] == 'any',
+                rule['proto-ports'][0]['ports'] == '',
+                rule['action'] == 'deny',
+                rule['from-ip-addresses'] == [host_source_ip],
+                rule['to-ip-addresses'] == ['0.0.0.0/0']
+            )
         ):
             match_list.append(index)
 
         if all(
-                (
-                    rule['proto-ports'][0]['protocol'] == 'any',
-                    rule['proto-ports'][0]['ports'] == '',
-                    rule['action'] == 'deny',
-                    rule['from-ip-addresses'] == ['0.0.0.0/0'],
-                    rule['to-ip-addresses'] == [host_source_ip]
-                )
+            (
+                rule['proto-ports'][0]['protocol'] == 'any',
+                rule['proto-ports'][0]['ports'] == '',
+                rule['action'] == 'deny',
+                rule['from-ip-addresses'] == ['0.0.0.0/0'],
+                rule['to-ip-addresses'] == [host_source_ip]
+            )
         ):
             match_list.append(index)
 

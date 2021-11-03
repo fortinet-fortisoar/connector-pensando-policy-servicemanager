@@ -5,7 +5,9 @@ from .builtins import *
 from .constants import LOGGER_NAME
 from .health_check import health_check
 
+
 logger = get_logger(LOGGER_NAME)
+
 
 class SampleRest(Connector):
 

@@ -6,7 +6,7 @@ import pickle
 import requests
 from requests import Request
 from connectors.core.connector import get_logger, ConnectorError
-from .constants import LOGGER_NAME, TMP_FILE_ROOT
+from .constants import LOGGER_NAME, TMP_FILE_ROOT, SESSION_FILE, COOKIE_EXP_FILE
 
 
 logger = get_logger(LOGGER_NAME)
@@ -148,10 +148,10 @@ def _login(config):
 def _get_state():
     """Load global state from disk and unpickle"""
     try:
-        with open(os.path.join(TMP_FILE_ROOT, 'pensando_psm_state_session'), 'rb') as file:
+        with open(os.path.join(TMP_FILE_ROOT, SESSION_FILE), 'rb') as file:
             p_state.session = pickle.load(file)
 
-        with open(os.path.join(TMP_FILE_ROOT, 'pensando_psm_state_cookie_expiration'), 'rb') as file:
+        with open(os.path.join(TMP_FILE_ROOT, COOKIE_EXP_FILE), 'rb') as file:
             p_state.cookie_expiration = pickle.load(file)
 
         logger.info('Loaded session state successfully')
@@ -163,11 +163,11 @@ def _get_state():
 def _set_state():
     """Pickle global state and save to disk"""
     try:
-        with open(os.path.join(TMP_FILE_ROOT, 'pensando_psm_state_session'), 'wb') as file:
+        with open(os.path.join(TMP_FILE_ROOT, SESSION_FILE), 'wb') as file:
             # Pickle the Requests Session() object
             pickle.dump(p_state.session, file, pickle.HIGHEST_PROTOCOL)
 
-        with open(os.path.join(TMP_FILE_ROOT, 'pensando_psm_state_cookie_expiration'), 'wb') as file:
+        with open(os.path.join(TMP_FILE_ROOT, COOKIE_EXP_FILE), 'wb') as file:
             # Pickle the cookie_expiration variable
             pickle.dump(p_state.cookie_expiration, file, pickle.HIGHEST_PROTOCOL)
 
@@ -180,8 +180,8 @@ def _set_state():
 
 def _debug_remove_session_state():
     try:
-        os.remove(os.path.join(TMP_FILE_ROOT, 'pensando_psm_state_session'))
-        os.remove(os.path.join(TMP_FILE_ROOT, 'pensando_psm_state_cookie_expiration'))
+        os.remove(os.path.join(TMP_FILE_ROOT, SESSION_FILE))
+        os.remove(os.path.join(TMP_FILE_ROOT, COOKIE_EXP_FILE))
         logger.info('Debug: Session state removed from disk')
     except Exception as ex:
         logger.warning(f'Debug: Error removing Session State from disk: {ex}')
@@ -191,10 +191,10 @@ def _debug_reset_session_state():
     try:
         reset_session = requests.Session()
         reset_cookie_expiration = None
-        with open(os.path.join(TMP_FILE_ROOT, 'pensando_psm_state_session'), 'wb') as file:
+        with open(os.path.join(TMP_FILE_ROOT, SESSION_FILE), 'wb') as file:
             pickle.dump(reset_session, file, pickle.HIGHEST_PROTOCOL)
 
-        with open(os.path.join(TMP_FILE_ROOT, 'pensando_psm_state_cookie_expiration'), 'wb') as file:
+        with open(os.path.join(TMP_FILE_ROOT, COOKIE_EXP_FILE), 'wb') as file:
             pickle.dump(reset_cookie_expiration, file, pickle.HIGHEST_PROTOCOL)
         logger.info('Debug: Session state reset on disk')
     except Exception as ex:

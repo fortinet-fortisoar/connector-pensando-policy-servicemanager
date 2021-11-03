@@ -75,8 +75,8 @@ def ioc_delete_list(config, params):
     for index, rule in enumerate(rules):
         if any(
             (
-                SENTINEL_IP in rule.get('to-ip-addresses', None),
-                SENTINEL_IP in rule.get('from-ip-addresses', None)
+                SENTINEL_IP in rule.get('to-ip-addresses', ''),
+                SENTINEL_IP in rule.get('from-ip-addresses', '')
             )
         ):
             match_list.append(index)

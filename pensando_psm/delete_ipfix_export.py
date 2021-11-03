@@ -17,7 +17,7 @@ def delete_ipfix_export(config, params):
     host_source_ip = params.get('host_source_ip')
     ipfix_collector_ip = params.get('ipfix_collector_ip')
 
-    if not endpoint or not host_source_ip:
+    if not all((endpoint, host_source_ip)):
         logger.exception('Missing required input')
         raise ConnectorError('Missing required input')
 

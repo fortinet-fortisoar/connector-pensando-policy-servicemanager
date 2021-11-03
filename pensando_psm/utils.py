@@ -46,7 +46,7 @@ def invoke_rest_endpoint(config, endpoint, method='GET', data=None, headers=None
     protocol = config.get('protocol', 'https').lower()
     verify_ssl = config.get('verify_ssl', True)
 
-    if not server_address or not username or not password or not tenant:
+    if not all((server_address, username, password, tenant)):
         logger.exception('Missing required parameters')
         raise ConnectorError('Missing required parameters')
 

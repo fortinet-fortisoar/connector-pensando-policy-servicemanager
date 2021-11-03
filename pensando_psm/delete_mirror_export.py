@@ -17,7 +17,7 @@ def delete_mirror_export(config, params):
     host_source_ip = params.get('host_source_ip')
     erspan_collector_ip = params.get('erspan_collector_ip')
 
-    if not endpoint or not host_source_ip:
+    if not all((endpoint, host_source_ip)):
         logger.exception('Missing required input')
         raise ConnectorError('Missing required input')
 

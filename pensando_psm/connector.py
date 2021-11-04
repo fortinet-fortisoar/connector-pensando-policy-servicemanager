@@ -1,5 +1,4 @@
-from connectors.core.connector import Connector
-from connectors.core.connector import get_logger
+from connectors.core.connector import Connector, get_logger
 from django.utils.module_loading import import_string
 from .builtins import *
 from .constants import LOGGER_NAME
@@ -9,7 +8,7 @@ from .health_check import health_check
 logger = get_logger(LOGGER_NAME)
 
 
-class SampleRest(Connector):
+class PensandoPSM(Connector):
 
     def dev_execute(self, config, operation, params, *args, **kwargs):
         # Call dev_execute from the 'execute' function if you are doing very frequent changes to the connector code and changes don't reflect without a service restart

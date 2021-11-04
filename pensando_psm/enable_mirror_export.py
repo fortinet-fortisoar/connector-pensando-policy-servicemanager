@@ -1,8 +1,8 @@
 """enable_mirror_export operation """
 
 from connectors.core.connector import get_logger, ConnectorError
-from .utils import invoke_rest_endpoint, normalize_list_input
 from .constants import LOGGER_NAME
+from .utils import invoke_rest_endpoint, normalize_list_input
 
 
 logger = get_logger(LOGGER_NAME)

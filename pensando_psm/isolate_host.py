@@ -2,9 +2,9 @@
 
 from connectors.core.connector import get_logger, ConnectorError
 from .constants import LOGGER_NAME
+from .utils import invoke_rest_endpoint
 from .get_network_security_policies import get_network_security_policies
 from .unisolate_host import unisolate_host
-from .utils import invoke_rest_endpoint
 
 
 logger = get_logger(LOGGER_NAME)

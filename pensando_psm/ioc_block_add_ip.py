@@ -3,8 +3,8 @@
 from collections import deque
 from connectors.core.connector import get_logger, ConnectorError
 from .constants import LOGGER_NAME, SENTINEL_IP
-from .get_network_security_policies import get_network_security_policies
 from .utils import invoke_rest_endpoint, normalize_list_input
+from .get_network_security_policies import get_network_security_policies
 
 
 logger = get_logger(LOGGER_NAME)

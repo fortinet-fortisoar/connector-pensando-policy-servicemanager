@@ -1,8 +1,8 @@
 """debug remove session state"""
 
 from connectors.core.connector import get_logger
-from .utils import _debug_remove_session_state
 from .constants import LOGGER_NAME
+from .utils import _debug_remove_session_state
 
 
 logger = get_logger(LOGGER_NAME)

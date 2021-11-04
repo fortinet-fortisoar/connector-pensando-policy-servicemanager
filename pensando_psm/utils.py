@@ -108,7 +108,6 @@ def _login(config):
         'tenant': tenant
     }
 
-    # _get_state()
     req = Request('POST', url, json=data, headers=headers)
     prepped = psm.session.prepare_request(req)
 

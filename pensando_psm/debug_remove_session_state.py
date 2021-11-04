@@ -8,5 +8,5 @@ from .utils import _debug_remove_session_state
 logger = get_logger(LOGGER_NAME)
 
 
-def debug_remove_session_state(*args):
+def debug_remove_session_state(config, params):
     _debug_remove_session_state()

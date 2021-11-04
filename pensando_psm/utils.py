@@ -6,7 +6,7 @@ import pickle
 import requests
 from requests import Request
 from connectors.core.connector import get_logger, ConnectorError
-from .constants import LOGGER_NAME, TMP_FILE_ROOT, SESSION_FILE, COOKIE_EXP_FILE
+from .constants import LOGGER_NAME, TMP_FILE_ROOT, PSM_SESSION_FILE, PSM_COOKIE_EXP_FILE
 
 
 logger = get_logger(LOGGER_NAME)
@@ -15,12 +15,12 @@ logger = get_logger(LOGGER_NAME)
 class PensandoState():
     """Keeps session state, including the session cookie and cookie expiration value"""
 
-    def __init__(self, session=None, cookie_expiration=None):
-        self.session = session
-        self.cookie_expiration = cookie_expiration
+    def __init__(self):
+        self.session = requests.Session()
+        self.cookie_expiration = None
 
 
-p_state = PensandoState(session=requests.Session(), cookie_expiration=None)
+psm = PensandoState()
 
 
 def invoke_rest_endpoint(config, endpoint, method='GET', data=None, headers=None):
@@ -31,10 +31,10 @@ def invoke_rest_endpoint(config, endpoint, method='GET', data=None, headers=None
     # check if we need to login
     _get_state()
 
-    if not p_state.cookie_expiration:
+    if not psm.cookie_expiration:
         logger.info('Authentication cookie not found. Logging in.')
         _login(config)
-    elif p_state.cookie_expiration and datetime.fromtimestamp(p_state.cookie_expiration) < datetime.now():
+    elif psm.cookie_expiration and datetime.fromtimestamp(psm.cookie_expiration) < datetime.now():
         logger.info('Authentication cookie expired. Logging in.')
         _login(config)
 
@@ -43,10 +43,10 @@ def invoke_rest_endpoint(config, endpoint, method='GET', data=None, headers=None
     username = config.get('username')
     password = config.get('password')
     tenant = config.get('tenant')
-    protocol = config.get('protocol', 'https').lower()
-    verify_ssl = config.get('verify_ssl', True)
+    protocol = config.get('protocol').lower()
+    verify_ssl = config.get('verify_ssl')
 
-    if not all((server_address, username, password, tenant)):
+    if not all((server_address, port, username, password, tenant, protocol)):
         logger.exception('Missing required parameters')
         raise ConnectorError('Missing required parameters')
 
@@ -54,8 +54,8 @@ def invoke_rest_endpoint(config, endpoint, method='GET', data=None, headers=None
 
     try:
         req = Request(method, url, json=data, headers=headers)
-        prepped = p_state.session.prepare_request(req)
-        response = p_state.session.send(prepped, verify=verify_ssl)
+        prepped = psm.session.prepare_request(req)
+        response = psm.session.send(prepped, verify=verify_ssl)
         logger.info(f'REST request sent: {url}')
 
     except Exception as ex:
@@ -91,14 +91,14 @@ def _login(config):
     headers = {'accept': 'application/json'}
     server_address = config.get('server_address')
     endpoint = '/v1/login'
-    port = config.get('port', '443')
+    port = config.get('port')
     username = config.get('username')
     password = config.get('password')
     tenant = config.get('tenant')
-    protocol = config.get('protocol', 'https').lower()
-    verify_ssl = config.get('verify_ssl', True)
+    protocol = config.get('protocol').lower()
+    verify_ssl = config.get('verify_ssl')
 
-    if not server_address or not username or not password or not tenant:
+    if not all((server_address, port, username, password, tenant, protocol)):
         raise ConnectorError('Missing required parameters')
 
     url = f'{protocol}://{server_address}:{port}{endpoint}'
@@ -108,12 +108,12 @@ def _login(config):
         'tenant': tenant
     }
 
-    _get_state()
+    # _get_state()
     req = Request('POST', url, json=data, headers=headers)
-    prepped = p_state.session.prepare_request(req)
+    prepped = psm.session.prepare_request(req)
 
     try:
-        response = p_state.session.send(prepped, verify=verify_ssl)
+        response = psm.session.send(prepped, verify=verify_ssl)
         logger.info('Login: Authentication credentials sent.')
 
     except Exception as ex:
@@ -129,15 +129,15 @@ def _login(config):
         raise ConnectorError(f'Login Failed - Bad Response Code: {response.status_code} - {response.content}')
 
     cookie_found = False
-    for cookie in p_state.session.cookies:
+    for cookie in psm.session.cookies:
         if cookie.name == 'sid':
             cookie_found = True
-            p_state.cookie_expiration = cookie.expires
+            psm.cookie_expiration = cookie.expires
             _set_state()
             break
 
     if cookie_found:
-        expiration_str = datetime.fromtimestamp(p_state.cookie_expiration).isoformat()
+        expiration_str = datetime.fromtimestamp(psm.cookie_expiration).isoformat()
         logger.info(f'Login Success - Authentication expires: {expiration_str}')
         return True
 
@@ -148,11 +148,11 @@ def _login(config):
 def _get_state():
     """Load global state from disk and unpickle"""
     try:
-        with open(os.path.join(TMP_FILE_ROOT, SESSION_FILE), 'rb') as file:
-            p_state.session = pickle.load(file)
+        with open(os.path.join(TMP_FILE_ROOT, PSM_SESSION_FILE), 'rb') as file:
+            psm.session = pickle.load(file)
 
-        with open(os.path.join(TMP_FILE_ROOT, COOKIE_EXP_FILE), 'rb') as file:
-            p_state.cookie_expiration = pickle.load(file)
+        with open(os.path.join(TMP_FILE_ROOT, PSM_COOKIE_EXP_FILE), 'rb') as file:
+            psm.cookie_expiration = pickle.load(file)
 
         logger.info('Loaded session state successfully')
 
@@ -163,13 +163,13 @@ def _get_state():
 def _set_state():
     """Pickle global state and save to disk"""
     try:
-        with open(os.path.join(TMP_FILE_ROOT, SESSION_FILE), 'wb') as file:
+        with open(os.path.join(TMP_FILE_ROOT, PSM_SESSION_FILE), 'wb') as file:
             # Pickle the Requests Session() object
-            pickle.dump(p_state.session, file, pickle.HIGHEST_PROTOCOL)
+            pickle.dump(psm.session, file, pickle.HIGHEST_PROTOCOL)
 
-        with open(os.path.join(TMP_FILE_ROOT, COOKIE_EXP_FILE), 'wb') as file:
+        with open(os.path.join(TMP_FILE_ROOT, PSM_COOKIE_EXP_FILE), 'wb') as file:
             # Pickle the cookie_expiration variable
-            pickle.dump(p_state.cookie_expiration, file, pickle.HIGHEST_PROTOCOL)
+            pickle.dump(psm.cookie_expiration, file, pickle.HIGHEST_PROTOCOL)
 
     except Exception as ex:
         logger.exception(f'Error saving session state: {ex}')
@@ -180,8 +180,8 @@ def _set_state():
 
 def _debug_remove_session_state():
     try:
-        os.remove(os.path.join(TMP_FILE_ROOT, SESSION_FILE))
-        os.remove(os.path.join(TMP_FILE_ROOT, COOKIE_EXP_FILE))
+        os.remove(os.path.join(TMP_FILE_ROOT, PSM_SESSION_FILE))
+        os.remove(os.path.join(TMP_FILE_ROOT, PSM_COOKIE_EXP_FILE))
         logger.info('Debug: Session state removed from disk')
     except Exception as ex:
         logger.warning(f'Debug: Error removing Session State from disk: {ex}')
@@ -191,10 +191,10 @@ def _debug_reset_session_state():
     try:
         reset_session = requests.Session()
         reset_cookie_expiration = None
-        with open(os.path.join(TMP_FILE_ROOT, SESSION_FILE), 'wb') as file:
+        with open(os.path.join(TMP_FILE_ROOT, PSM_SESSION_FILE), 'wb') as file:
             pickle.dump(reset_session, file, pickle.HIGHEST_PROTOCOL)
 
-        with open(os.path.join(TMP_FILE_ROOT, COOKIE_EXP_FILE), 'wb') as file:
+        with open(os.path.join(TMP_FILE_ROOT, PSM_COOKIE_EXP_FILE), 'wb') as file:
             pickle.dump(reset_cookie_expiration, file, pickle.HIGHEST_PROTOCOL)
         logger.info('Debug: Session state reset on disk')
     except Exception as ex:
@@ -207,10 +207,10 @@ def _debug_expire_cookie(config):
 
     # then set the expiration to now - 100
     try:
-        for cookie in p_state.session.cookies:
+        for cookie in psm.session.cookies:
             if cookie.name == 'sid':
                 cookie.expires = int(datetime.timestamp(datetime.now())) - 100
-                p_state.cookie_expiration = cookie.expires
+                psm.cookie_expiration = cookie.expires
                 _set_state()
                 logger.info('Debug: Session cookie expired on disk')
     except Exception as ex:

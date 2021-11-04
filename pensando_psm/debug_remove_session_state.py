@@ -9,4 +9,4 @@ logger = get_logger(LOGGER_NAME)
 
 
 def debug_remove_session_state(config, params):
-    _debug_remove_session_state()
+    _debug_remove_session_state(config)

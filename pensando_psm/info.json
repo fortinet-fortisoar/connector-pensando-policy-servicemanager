@@ -101,7 +101,7 @@
         },
         {
             "operation": "debug_expire_cookie",
-            "title": "debug - expire auth cookie",
+            "title": "Debug - Expire Auth Cookie",
             "description": "Debug login by expiring the auth cookie on disk.",
             "enabled": false,
             "category": "",

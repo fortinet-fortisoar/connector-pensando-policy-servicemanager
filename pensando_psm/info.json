@@ -209,7 +209,7 @@
                     "type": "text",
                     "name": "template_interval",
                     "value": "5m",
-                    "tooltip": "Should be a valid time duration between 1m0s and 30m0s. Example: 15m"
+                    "tooltip": "Should be a valid time duration between 1m0s and 30m0s. Example: 15m",
                     "description": "Template Interval defines how often to send IPFIX templates to an external collector. The value is specified as a string format, '1m', '20m'. Should be a valid time duration between 1m0s and 30m0s. Example: 15m"
                 },
                 {
@@ -318,7 +318,7 @@
                     "type": "text",
                     "name": "erspan_id",
                     "value": "1",
-                    "placeholder" : "Value should be between 1 and 1023."
+                    "placeholder" : "Value should be between 1 and 1023.",
                     "description": "Value should be between 1 and 1023."
                 },
                 {

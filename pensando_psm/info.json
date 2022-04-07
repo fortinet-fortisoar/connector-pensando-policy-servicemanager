@@ -389,6 +389,7 @@
                     "type": "text",
                     "name": "erspan_match_protocols",
                     "value": "",
+                    "placeholder": "e.g. [\"any\", \"icmp, udp/500\", \"tcp/80-88\"]"
                     "description": "Protocols and ports/port ranges to match for mirrored packets. Can be a comma seperated list or a JSON Array. e.g. 'any, icmp, udp/500, tcp/80-88' or '[\"any\", \"icmp, udp/500\", \"tcp/80-88\"]'"
                 }
             ],

@@ -325,6 +325,7 @@
                     "type": "text",
                     "name": "packet_size",
                     "value": "",
+                    "placeholder": "Value should be between 64 and 2048."
                     "description": "Max size of a mirrored packet. Packet size is not checked by default. Value should be between 64 and 2048."
                 },
                 {

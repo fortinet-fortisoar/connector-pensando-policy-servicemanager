@@ -122,7 +122,7 @@
         {
             "operation": "get_network_security_policies",
             "title": "Get Network Security Policies",
-            "description": "Get the Network Security Policy list.",
+            "description": "Get the Network Security Policy list from the Pensando PSM Server.",
             "enabled": true,
             "category": "",
             "annotation": "",
@@ -134,7 +134,7 @@
         {
             "operation": "get_alerts",
             "title": "Get Alerts",
-            "description": "Get Alerts.",
+            "description": "Get a list of Alerts from the Pensando PSM Server.",
             "enabled": true,
             "category": "",
             "annotation": "",
@@ -146,7 +146,7 @@
         {
             "operation": "get_workloads",
             "title": "Get Workloads",
-            "description": "Get Workloads.",
+            "description": "Get a list of Workloads from the Pensando PSM Server.",
             "enabled": true,
             "category": "",
             "annotation": "",
@@ -158,7 +158,7 @@
         {
             "operation": "get_networks",
             "title": "Get Networks",
-            "description": "Get Networks.",
+            "description": "Get a list of Networks from the Pensando PSM Server.",
             "enabled": true,
             "category": "",
             "annotation": "",
@@ -170,7 +170,7 @@
         {
             "operation": "get_distributedservicecards",
             "title": "Get Distributed Service Cards",
-            "description": "Get Distributed Service Cards.",
+            "description": "Get a list of Distributed Service Cards from the Pensando PSM Server.",
             "enabled": true,
             "category": "",
             "annotation": "",
@@ -182,7 +182,7 @@
         {
             "operation": "enable_ipfix_export",
             "title": "Enable IPFIX Export for Host",
-            "description": "Enable IPFIX Flow Export of all flows for a source IP.",
+            "description": "Enable IPFIX Flow Export of all flows for a source IP from the Pensando PSM Server.",
             "enabled": true,
             "category": "",
             "annotation": "",
@@ -268,7 +268,7 @@
         {
             "operation": "delete_ipfix_export",
             "title": "Delete existing IPFIX Export for Host",
-            "description": "Delete IPFIX Flow Export of all flows for a source IP.",
+            "description": "Delete IPFIX Flow Export of all flows for a source IP from the Pensando PSM Server.",
             "enabled": true,
             "category": "",
             "annotation": "",
@@ -302,7 +302,7 @@
         {
             "operation": "enable_mirror_export",
             "title": "Enable Mirror Traffic Export for Host",
-            "description": "Enable Mirror Traffic Export of traffic flows for a source IP.",
+            "description": "Enable Mirror Traffic Export of traffic flows for a source IP on the Pensand PSM Server.",
             "enabled": true,
             "category": "",
             "annotation": "",
@@ -413,7 +413,7 @@
         {
             "operation": "delete_mirror_export",
             "title": "Delete Existing Mirror Traffic Export for Host",
-            "description": "Delete ERSPAN Mirror Traffic Export for a source IP.",
+            "description": "Delete ERSPAN Mirror Traffic Export for a source IP from the Pensando PSM Server.",
             "enabled": true,
             "category": "",
             "annotation": "",
@@ -447,7 +447,7 @@
         {
             "operation": "isolate_host",
             "title": "Isolate Host",
-            "description": "Quarantine a Host. (Disallow all North/South/East/West inbound and outbound traffic)",
+            "description": "Quarantine a Host (Disallow all North/South/East/West inbound and outbound traffic) on the Pensando PSM Server.",
             "enabled": true,
             "category": "",
             "annotation": "",
@@ -471,7 +471,7 @@
         {
             "operation": "unisolate_host",
             "title": "Unisolate Host",
-            "description": "Remove Host quarantine. (Remove North/South/East/West inbound and outbound traffic block)",
+            "description": "Remove Host quarantine (Remove North/South/East/West inbound and outbound traffic block) on the Pensando PSM Server.",
             "enabled": true,
             "category": "",
             "annotation": "",
@@ -495,7 +495,7 @@
         {
             "operation": "ioc_block_add_ip",
             "title": "Add IOC IPs to Blocklist",
-            "description": "Add one or more IOC IPs to a block list.",
+            "description": "Add one or more IOC IPs to a block list on the Pensando PSM Server.",
             "enabled": true,
             "category": "",
             "annotation": "",
@@ -508,9 +508,9 @@
                     "type": "text",
                     "name": "ioc_ip",
                     "value": "",
-                    "tooltip": "comma separated list or a JSON Array.",
+                    "tooltip": "comma-separated list or a JSON Array.",
                     "placeholder": "e.g. '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]'",
-                    "description": "IP or IPs to block. Can be a comma seperated list or a JSON Array. e.g. '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]'"
+                    "description": "IP or IPs to block. Can be a comma-seperated list or a JSON Array. e.g. '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]'"
                 }
             ],
             "output_schema": {
@@ -521,7 +521,7 @@
         {
             "operation": "ioc_block_remove_ip",
             "title": "Remove IOC IPs from Blocklist",
-            "description": "Remove one or more IOC IPs from a block list.",
+            "description": "Remove one or more IOC IPs from a block list on the Pensando PSM Server.",
             "enabled": true,
             "category": "",
             "annotation": "",
@@ -534,7 +534,7 @@
                     "type": "text",
                     "name": "ioc_ip",
                     "value": "",
-                    "description": "IP or IPs to remove from the blocklist. Can be a comma seperated list or a JSON Array. e.g. '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]'"
+                    "description": "IP or IPs to remove from the blocklist. Can be a comma-seperated list or a JSON Array. e.g. '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]'"
                 }
             ],
             "output_schema": {
@@ -545,7 +545,7 @@
         {
             "operation": "ioc_delete_list",
             "title": "Remove IOC Blocklist",
-            "description": "Entirely remove the IOC block list.",
+            "description": "Entirely remove the IOC block list from the Pensando PSM Server.",
             "enabled": true,
             "category": "",
             "annotation": "",

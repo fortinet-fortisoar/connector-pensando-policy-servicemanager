@@ -318,6 +318,7 @@
                     "type": "text",
                     "name": "erspan_id",
                     "value": "1",
+                    "placeholder" : "Value should be between 1 and 1023."
                     "description": "Value should be between 1 and 1023."
                 },
                 {

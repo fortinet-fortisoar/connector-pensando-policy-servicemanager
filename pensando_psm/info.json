@@ -198,6 +198,7 @@
                     "type": "text",
                     "name": "interval",
                     "value": "10s",
+                    "tooltip": "Should be a valid time duration between 1s and 24h0m0s. Example: 60s"
                     "description": "Interval defines how often to push the records to an external collector. The value is specified as a string format, '10s', '20m'. Should be a valid time duration between 1s and 24h0m0s. Example: 60s"
                 },
                 {

@@ -198,7 +198,7 @@
                     "type": "text",
                     "name": "interval",
                     "value": "10s",
-                    "tooltip": "Should be a valid time duration between 1s and 24h0m0s. Example: 60s"
+                    "tooltip": "Should be a valid time duration between 1s and 24h0m0s. Example: 60s",
                     "description": "Interval defines how often to push the records to an external collector. The value is specified as a string format, '10s', '20m'. Should be a valid time duration between 1s and 24h0m0s. Example: 60s"
                 },
                 {
@@ -327,7 +327,7 @@
                     "type": "text",
                     "name": "packet_size",
                     "value": "",
-                    "placeholder": "Value should be between 64 and 2048."
+                    "placeholder": "Value should be between 64 and 2048.",
                     "description": "Max size of a mirrored packet. Packet size is not checked by default. Value should be between 64 and 2048."
                 },
                 {
@@ -392,7 +392,7 @@
                     "type": "text",
                     "name": "erspan_match_protocols",
                     "value": "",
-                    "placeholder": "e.g. [\"any\", \"icmp, udp/500\", \"tcp/80-88\"]"
+                    "placeholder": "e.g. [\"any\", \"icmp, udp/500\", \"tcp/80-88\"]",
                     "description": "Protocols and ports/port ranges to match for mirrored packets. Can be a comma seperated list or a JSON Array. e.g. 'any, icmp, udp/500, tcp/80-88' or '[\"any\", \"icmp, udp/500\", \"tcp/80-88\"]'"
                 }
             ],
@@ -500,8 +500,7 @@
                     "name": "ioc_ip",
                     "value": "",
                     "tooltip": "comma separated list or a JSON Array.",
-                    "placeholder": "e.g. '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]'"
-             
+                    "placeholder": "e.g. '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]'",
                     "description": "IP or IPs to block. Can be a comma seperated list or a JSON Array. e.g. '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]'"
                 }
             ],

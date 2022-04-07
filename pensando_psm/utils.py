@@ -211,7 +211,7 @@ def _debug_reset_session_state(config):
 
         with open(os.path.join(TMP_FILE_ROOT, psm_cookie_exp_unique), 'wb') as file:
             pickle.dump(reset_cookie_expiration, file, pickle.HIGHEST_PROTOCOL)
-        logger.info('Debug: Session state reset on disk')
+        logger.debug('Session state reset on disk')
     except Exception as ex:
         logger.warning(f'Debug: Error resetting Session State on disk: {ex}')
 

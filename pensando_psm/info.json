@@ -70,7 +70,8 @@
                 "name": "verify_ssl",
                 "required": false,
                 "visible": true,
-                "editable": true
+                "editable": true,
+                "value": true
             }
         ]
     },

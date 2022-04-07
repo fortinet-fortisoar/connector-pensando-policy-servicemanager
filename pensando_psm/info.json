@@ -25,7 +25,8 @@
                 "required": true,
                 "visible": true,
                 "editable": true,
-                "value": "443"
+                "value": "443",
+                "description": "Server Port of the Pensando PSM server to which you will connect and perform the automated operations."
             },
             {
                 "title": "Tenant",
@@ -34,7 +35,8 @@
                 "required": true,
                 "visible": true,
                 "editable": true,
-                "value": "default"
+                "value": "default",
+                "description": "Tenant of the Pensando PSM server to which you will connect and perform the automated operations."
             },
             {
                 "title": "Username",
@@ -42,7 +44,8 @@
                 "name": "username",
                 "required": true,
                 "visible": true,
-                "editable": true
+                "editable": true,
+                "description": "Username on the Pensando PSM server to which you will connect and perform the automated operations."
             },
             {
                 "title": "Password",
@@ -50,7 +53,8 @@
                 "name": "password",
                 "required": true,
                 "visible": true,
-                "editable": true
+                "editable": true,
+                "description": "Password on the Pensando PSM server to which you will connect and perform the automated operations."
             },
             {
                 "title": "Protocol",
@@ -63,7 +67,8 @@
                 "options": [
                     "HTTP",
                     "HTTPS"
-                ]
+                ],
+                "description": "Protocol of the Pensando PSM server to which you will connect and perform the automated operations."
             },
             {
                 "title": "Verify SSL",
@@ -72,7 +77,8 @@
                 "required": false,
                 "visible": true,
                 "editable": true,
-                "value": true
+                "value": true,
+                "description": "When using HTTPS protocol, verify the SSL certificate on the Pensando PSM server to which you will connect and perform the automated operations."
             }
         ]
     },

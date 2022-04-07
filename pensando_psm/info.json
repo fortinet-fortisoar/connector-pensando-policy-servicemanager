@@ -20,7 +20,7 @@
             },
             {
                 "title": "Server Port",
-                "type": "text",
+                "type": "integer",
                 "name": "port",
                 "required": true,
                 "visible": true,

@@ -15,7 +15,8 @@
                 "name": "server_address",
                 "required": true,
                 "visible": true,
-                "editable": true
+                "editable": true,
+                "description": "Server Address of the Pensando PSM server to which you will connect and perform the automated operations."
             },
             {
                 "title": "Server Port",

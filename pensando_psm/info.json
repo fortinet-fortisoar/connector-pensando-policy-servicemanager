@@ -89,7 +89,7 @@
         },
         {
             "operation": "debug_reset_session_state",
-            "title": "debug - reset session state",
+            "title": "Debug - Reset Session State",
             "description": "Debug login by resetting session state on disk.",
             "enabled": false,
             "category": "",

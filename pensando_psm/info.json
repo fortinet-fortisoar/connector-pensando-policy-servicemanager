@@ -77,7 +77,7 @@
     "operations": [
         {
             "operation": "debug_remove_session_state",
-            "title": "debug - remove session state",
+            "title": "Debug - Remove Session State",
             "description": "Debug login by removing session state from disk.",
             "enabled": false,
             "category": "",

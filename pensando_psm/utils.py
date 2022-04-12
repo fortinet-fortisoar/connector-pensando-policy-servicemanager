@@ -12,7 +12,7 @@ from .constants import LOGGER_NAME, TMP_FILE_ROOT, PSM_SESSION_FILE, PSM_COOKIE_
 logger = get_logger(LOGGER_NAME)
 
 
-class PensandoState():
+class PensandoPSM():
     """Keeps session state, including the session cookie and cookie expiration value"""
 
     def __init__(self, config):
@@ -175,7 +175,7 @@ def invoke_rest_endpoint(config, endpoint, method='GET', data=None, headers=None
     if headers is None:
         headers = {'accept': 'application/json'}
 
-    psm = PensandoState(config)
+    psm = PensandoPSM(config)
     server_address = config.get('server_address')
     port = config.get('port', '443')
     username = config.get('username')
@@ -225,15 +225,15 @@ def normalize_list_input(user_input):
 
 
 def _debug_remove_session_state(config):
-    psm = PensandoState(config)
+    psm = PensandoPSM(config)
     psm._debug_remove_session_state()
 
 
 def _debug_reset_session_state(config):
-    psm = PensandoState(config)
+    psm = PensandoPSM(config)
     psm._debug_reset_session_state()
 
 
 def _debug_expire_cookie(config):
-    psm = PensandoState(config)
+    psm = PensandoPSM(config)
     psm._debug_expire_cookie()

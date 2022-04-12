@@ -130,7 +130,6 @@ class PensandoPSM():
             config_id = self.config.get('config_id', 'generic')
             psm_session_unique = f'{PSM_SESSION_FILE}_{config_id}'
             psm_cookie_exp_unique = f'{PSM_COOKIE_EXP_FILE}_{config_id}'
-
             os.remove(os.path.join(TMP_FILE_ROOT, psm_session_unique))
             os.remove(os.path.join(TMP_FILE_ROOT, psm_cookie_exp_unique))
             logger.debug('Debug: Session state removed from disk')
@@ -142,14 +141,15 @@ class PensandoPSM():
             config_id = self.config.get('config_id', 'generic')
             psm_session_unique = f'{PSM_SESSION_FILE}_{config_id}'
             psm_cookie_exp_unique = f'{PSM_COOKIE_EXP_FILE}_{config_id}'
-
             reset_session = requests.Session()
             reset_cookie_expiration = None
+
             with open(os.path.join(TMP_FILE_ROOT, psm_session_unique), 'wb') as file:
                 pickle.dump(reset_session, file, pickle.HIGHEST_PROTOCOL)
 
             with open(os.path.join(TMP_FILE_ROOT, psm_cookie_exp_unique), 'wb') as file:
                 pickle.dump(reset_cookie_expiration, file, pickle.HIGHEST_PROTOCOL)
+
             logger.debug('Session state reset on disk')
         except Exception as ex:
             logger.debug(f'Error resetting Session State on disk: {ex}')
@@ -157,7 +157,6 @@ class PensandoPSM():
     def _debug_expire_cookie(self):
         # login to create cookie
         self.login()
-
         # then set the expiration to now - 100
         try:
             for cookie in self.session.cookies:
@@ -222,18 +221,3 @@ def normalize_list_input(user_input):
         return list(filter(None, result))
 
     return user_input
-
-
-def _debug_remove_session_state(config):
-    psm = PensandoPSM(config)
-    psm._debug_remove_session_state()
-
-
-def _debug_reset_session_state(config):
-    psm = PensandoPSM(config)
-    psm._debug_reset_session_state()
-
-
-def _debug_expire_cookie(config):
-    psm = PensandoPSM(config)
-    psm._debug_expire_cookie()

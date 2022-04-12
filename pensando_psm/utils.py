@@ -33,7 +33,7 @@ class PensandoPSM():
             self.login()
 
     def get_state(self):
-        """Load global state from disk and unpickle"""
+        """Load PSM state from disk and unpickle"""
         try:
             with open(os.path.join(TMP_FILE_ROOT, self.session_filename), 'rb') as file:
                 self.session = pickle.load(file)
@@ -47,13 +47,15 @@ class PensandoPSM():
             logger.warning(f'Error loading session state: {ex}')
 
     def set_state(self):
-        """Pickle global state and save to disk"""
+        """Pickle PSM state and save to disk"""
         try:
-            with open(os.path.join(TMP_FILE_ROOT, self.session_filename), 'rb') as file:
-                self.session = pickle.load(file)
+            with open(os.path.join(TMP_FILE_ROOT, self.session_filename), 'wb') as file:
+                # Pickle the Requests Session() object
+                pickle.dump(self.session, file, pickle.HIGHEST_PROTOCOL)
 
-            with open(os.path.join(TMP_FILE_ROOT, self.cookie_exp_filename), 'rb') as file:
-                self.cookie_expiration = pickle.load(file)
+            with open(os.path.join(TMP_FILE_ROOT, self.cookie_exp_filename), 'wb') as file:
+                # Pickle the cookie_expiration variable
+                pickle.dump(self.cookie_expiration, file, pickle.HIGHEST_PROTOCOL)
 
         except Exception as ex:
             logger.exception(f'Error saving session state: {ex}')
@@ -148,8 +150,7 @@ class PensandoPSM():
         try:
             for cookie in self.session.cookies:
                 if cookie.name == 'sid':
-                    cookie.expires = int(datetime.timestamp(datetime.now())) - 100
-                    self.cookie_expiration = cookie.expires
+                    self.cookie_expiration = int(datetime.timestamp(datetime.now())) - 100
                     self.set_state()
                     logger.debug('Debug: Session cookie expired on disk')
         except Exception as ex:

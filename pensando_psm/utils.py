@@ -19,6 +19,9 @@ class PensandoPSM():
         self.config = config
         self.session = requests.Session()
         self.cookie_expiration = None
+        config_id = self.config.get('config_id', 'generic')
+        self.session_filename = f'{PSM_SESSION_FILE}_{config_id}'
+        self.cookie_exp_filename = f'{PSM_COOKIE_EXP_FILE}_{config_id}'
         self.get_state()
 
         # login if needed
@@ -32,14 +35,10 @@ class PensandoPSM():
     def get_state(self):
         """Load global state from disk and unpickle"""
         try:
-            config_id = self.config.get('config_id', 'generic')
-            psm_session_unique = f'{PSM_SESSION_FILE}_{config_id}'
-            psm_cookie_exp_unique = f'{PSM_COOKIE_EXP_FILE}_{config_id}'
-
-            with open(os.path.join(TMP_FILE_ROOT, psm_session_unique), 'rb') as file:
+            with open(os.path.join(TMP_FILE_ROOT, self.session_filename), 'rb') as file:
                 self.session = pickle.load(file)
 
-            with open(os.path.join(TMP_FILE_ROOT, psm_cookie_exp_unique), 'rb') as file:
+            with open(os.path.join(TMP_FILE_ROOT, self.cookie_exp_filename), 'rb') as file:
                 self.cookie_expiration = pickle.load(file)
 
             logger.info('Loaded session state successfully')
@@ -50,17 +49,11 @@ class PensandoPSM():
     def set_state(self):
         """Pickle global state and save to disk"""
         try:
-            config_id = self.config.get('config_id', 'generic')
-            psm_session_unique = f'{PSM_SESSION_FILE}_{config_id}'
-            psm_cookie_exp_unique = f'{PSM_COOKIE_EXP_FILE}_{config_id}'
+            with open(os.path.join(TMP_FILE_ROOT, self.session_filename), 'rb') as file:
+                self.session = pickle.load(file)
 
-            with open(os.path.join(TMP_FILE_ROOT, psm_session_unique), 'wb') as file:
-                # Pickle the Requests Session() object
-                pickle.dump(self.session, file, pickle.HIGHEST_PROTOCOL)
-
-            with open(os.path.join(TMP_FILE_ROOT, psm_cookie_exp_unique), 'wb') as file:
-                # Pickle the cookie_expiration variable
-                pickle.dump(self.cookie_expiration, file, pickle.HIGHEST_PROTOCOL)
+            with open(os.path.join(TMP_FILE_ROOT, self.cookie_exp_filename), 'rb') as file:
+                self.cookie_expiration = pickle.load(file)
 
         except Exception as ex:
             logger.exception(f'Error saving session state: {ex}')
@@ -127,27 +120,21 @@ class PensandoPSM():
 
     def _debug_remove_session_state(self):
         try:
-            config_id = self.config.get('config_id', 'generic')
-            psm_session_unique = f'{PSM_SESSION_FILE}_{config_id}'
-            psm_cookie_exp_unique = f'{PSM_COOKIE_EXP_FILE}_{config_id}'
-            os.remove(os.path.join(TMP_FILE_ROOT, psm_session_unique))
-            os.remove(os.path.join(TMP_FILE_ROOT, psm_cookie_exp_unique))
+            os.remove(os.path.join(TMP_FILE_ROOT, self.session_filename))
+            os.remove(os.path.join(TMP_FILE_ROOT, self.cookie_exp_filename))
             logger.debug('Debug: Session state removed from disk')
         except Exception as ex:
             logger.debug(f'Debug: Error removing Session State from disk: {ex}')
 
     def _debug_reset_session_state(self):
         try:
-            config_id = self.config.get('config_id', 'generic')
-            psm_session_unique = f'{PSM_SESSION_FILE}_{config_id}'
-            psm_cookie_exp_unique = f'{PSM_COOKIE_EXP_FILE}_{config_id}'
             reset_session = requests.Session()
             reset_cookie_expiration = None
 
-            with open(os.path.join(TMP_FILE_ROOT, psm_session_unique), 'wb') as file:
+            with open(os.path.join(TMP_FILE_ROOT, self.session_filename), 'wb') as file:
                 pickle.dump(reset_session, file, pickle.HIGHEST_PROTOCOL)
 
-            with open(os.path.join(TMP_FILE_ROOT, psm_cookie_exp_unique), 'wb') as file:
+            with open(os.path.join(TMP_FILE_ROOT, self.cookie_exp_filename), 'wb') as file:
                 pickle.dump(reset_cookie_expiration, file, pickle.HIGHEST_PROTOCOL)
 
             logger.debug('Session state reset on disk')

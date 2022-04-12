@@ -104,18 +104,13 @@ class PensandoPSM():
             logger.exception(f'Login Failed - Bad Response Code: {response.status_code} - {response.content}')
             raise ConnectorError(f'Login Failed - Bad Response Code: {response.status_code} - {response.content}')
 
-        cookie_found = False
         for cookie in self.session.cookies:
             if cookie.name == 'sid':
-                cookie_found = True
                 self.cookie_expiration = cookie.expires
                 self.set_state()
-                break
-
-        if cookie_found:
-            expiration_str = datetime.fromtimestamp(self.cookie_expiration).isoformat()
-            logger.info(f'Login Success - Authentication expires: {expiration_str}')
-            return True
+                expiration_str = datetime.fromtimestamp(self.cookie_expiration).isoformat()
+                logger.info(f'Login Success - Authentication expires: {expiration_str}')
+                return True
 
         logger.exception('Login Failed: Auth Cookie not found.')
         raise ConnectorError('Login Failed: Auth Cookie not found.')

@@ -87,7 +87,7 @@
             "operation": "debug_remove_session_state",
             "title": "Debug - Remove Session State",
             "description": "Debug login by removing session state from disk.",
-            "enabled": false,
+            "enabled": true,
             "category": "",
             "annotation": "",
             "output_schema": {
@@ -99,7 +99,7 @@
             "operation": "debug_reset_session_state",
             "title": "Debug - Reset Session State",
             "description": "Debug login by resetting session state on disk.",
-            "enabled": false,
+            "enabled": true,
             "category": "",
             "annotation": "",
             "output_schema": {
@@ -111,7 +111,7 @@
             "operation": "debug_expire_cookie",
             "title": "Debug - Expire Auth Cookie",
             "description": "Debug login by expiring the auth cookie on disk.",
-            "enabled": false,
+            "enabled": true,
             "category": "",
             "annotation": "",
             "output_schema": {
@@ -534,6 +534,8 @@
                     "type": "text",
                     "name": "ioc_ip",
                     "value": "",
+                    "tooltip": "comma-separated list or a JSON Array.",
+                    "placeholder": "e.g. '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]'",
                     "description": "IP or IPs to remove from the blocklist. Can be a comma-seperated list or a JSON Array. e.g. '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]'"
                 }
             ],

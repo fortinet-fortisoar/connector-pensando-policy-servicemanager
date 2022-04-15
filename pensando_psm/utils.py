@@ -145,7 +145,8 @@ class PensandoPSM():
         try:
             for cookie in self.session.cookies:
                 if cookie.name == 'sid':
-                    self.cookie_expiration = int(datetime.timestamp(datetime.now())) - 100
+                    new_expiration = int(datetime.timestamp(datetime.now())) - 100
+                    cookie.expires = self.cookie_expiration = new_expiration
                     self.set_state()
                     logger.debug('Debug: Session cookie expired on disk')
         except Exception as ex:

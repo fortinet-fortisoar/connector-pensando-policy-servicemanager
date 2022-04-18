@@ -1,0 +1,273 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "@type": "WorkflowCollection",
+      "name": "Sample - Pensando",
+      "description": "Sample Pensando Playbooks",
+      "visible": true,
+      "image": null,
+      "uuid": "334e0f66-c88e-4560-8ff4-172062412781",
+      "id": 32,
+      "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+      "createDate": 1649960743,
+      "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+      "modifyDate": 1649979427,
+      "recordTags": [
+        "pensando"
+      ],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Isolate Compromised Host",
+          "aliasName": null,
+          "tag": "pensando",
+          "description": "Isolate a compromised host via Security Policy on the Pensando PSM",
+          "isActive": true,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1649980000,
+          "collection": "/api/3/workflow_collections/334e0f66-c88e-4560-8ff4-172062412781",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/abb2d115-c5d4-4547-8c2b-e0f40f8fc834",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Compromised Host",
+              "description": null,
+              "arguments": {
+                "route": "718e3bf9-f55b-4a37-b9ab-e4524bf9a1c3",
+                "title": "Compromised Host",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [
+                  {
+                    "name": "compromised_host",
+                    "type": "string",
+                    "label": "compromised_host",
+                    "title": "IPv4",
+                    "usable": true,
+                    "tooltip": "",
+                    "dataType": "text",
+                    "formType": "ipv4",
+                    "required": true,
+                    "_expanded": true,
+                    "mmdUpdate": true,
+                    "collection": false,
+                    "searchable": true,
+                    "templateUrl": "app/components/form/fields/webAddress.html",
+                    "defaultValue": "1.1.1.1",
+                    "_previousName": "suspicious_ip",
+                    "lengthConstraint": false,
+                    "allowedEncryption": true,
+                    "allowedGridColumn": true,
+                    "useRecordFieldDefault": false
+                  }
+                ],
+                "step_variables": {
+                  "input": {
+                    "params": {
+                      "compromised_host": "{{vars.request.data[\"compromised_host\"]}}"
+                    },
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "_promptexpanded": true,
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "abb2d115-c5d4-4547-8c2b-e0f40f8fc834",
+              "id": 714
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Isolate Host",
+              "description": null,
+              "arguments": {
+                "name": "Pensando Policy Service Manager",
+                "config": "274f0673-14d0-4a2a-98a8-a13566ddb6ac",
+                "params": {
+                  "host_source_ip": "{{vars.input.params['compromised_host']}}"
+                },
+                "version": "1.0.0",
+                "connector": "pensando_psm",
+                "operation": "isolate_host",
+                "operationTitle": "Isolate Host",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "220",
+              "left": "200",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "d1fe30f8-d800-4157-add6-14f864ce659d",
+              "id": 715
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> PensandoAddToIOCBlockList",
+              "targetStep": "/api/3/workflow_steps/d1fe30f8-d800-4157-add6-14f864ce659d",
+              "sourceStep": "/api/3/workflow_steps/abb2d115-c5d4-4547-8c2b-e0f40f8fc834",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "4f36a642-2434-44cd-bd50-cbf0a228866c"
+            }
+          ],
+          "priority": null,
+          "uuid": "1716d543-5ab1-4ff8-966f-c170703fbe30",
+          "recordTags": [
+            "pensando"
+          ],
+          "id": 215,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1649961726,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1649980000,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Block IOC",
+          "aliasName": null,
+          "tag": "pensando",
+          "description": "Add IOC IP addresses to the block list",
+          "isActive": true,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1649979878,
+          "collection": "/api/3/workflow_collections/334e0f66-c88e-4560-8ff4-172062412781",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/7525d08a-8990-4727-bec5-505230d2cf6d",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "f62ff8c4-c3ad-4c48-9cfd-0342b8dd00d6",
+                "title": "Pensando Block IOC",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [
+                  {
+                    "name": "suspicious_ip",
+                    "type": "string",
+                    "label": "suspicious_ip",
+                    "tooltip": "",
+                    "dataType": "text",
+                    "formType": "text",
+                    "required": true,
+                    "_expanded": true,
+                    "defaultValue": "1.1.1.1",
+                    "_previousName": "suspicious_i",
+                    "useRecordFieldDefault": false
+                  }
+                ],
+                "step_variables": {
+                  "input": {
+                    "params": {
+                      "suspicious_ip": "{{vars.request.data[\"suspicious_ip\"]}}"
+                    },
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "_promptexpanded": true,
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "7525d08a-8990-4727-bec5-505230d2cf6d",
+              "id": 711
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Block IOC",
+              "description": null,
+              "arguments": {
+                "name": "Pensando Policy Service Manager",
+                "config": "274f0673-14d0-4a2a-98a8-a13566ddb6ac",
+                "params": {
+                  "ioc_ip": "{{vars.input.params['suspicious_ip']}}"
+                },
+                "version": "1.0.0",
+                "connector": "pensando_psm",
+                "operation": "ioc_block_add_ip",
+                "operationTitle": "Add IOC IPs to Blocklist",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "220",
+              "left": "200",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "b13f7422-2022-44b7-8b86-75f37a2ac679",
+              "id": 713
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> PensandoAddToIOCBlockList",
+              "targetStep": "/api/3/workflow_steps/b13f7422-2022-44b7-8b86-75f37a2ac679",
+              "sourceStep": "/api/3/workflow_steps/7525d08a-8990-4727-bec5-505230d2cf6d",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "ff7cae5d-6915-4b73-b8fa-39124b2aca47"
+            }
+          ],
+          "priority": null,
+          "uuid": "fb4dbc15-8151-42c8-8876-ded9f0a9f6e9",
+          "recordTags": [
+            "pensando"
+          ],
+          "id": 214,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1649960976,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1649979877,
+          "owners": [],
+          "isPrivate": false
+        }
+      ]
+    }
+  ],
+  "exported_tags": [
+    "pensando"
+  ]
+}

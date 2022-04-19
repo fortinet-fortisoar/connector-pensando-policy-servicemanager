@@ -1,11 +1,11 @@
 {
-    "name": "pensando_psm",
+    "name": "pensando-policy-servicemanager",
     "version": "1.0.0",
     "label": "Pensando Policy Service Manager",
     "description": "Pensando's Policy and Services Manager (PSM) is a distributed system that leverages an intent-based model to deliver network and security policy to Pensando Distributed Services Cards for services implementation at the edge. This connector facilitates the automated operations related alerts, networks, hosts etc. ",
     "publisher": "Community",
-    "icon_small_name": "pensando_logo_small.jpg",
-    "icon_large_name": "pensando_logo_large.jpg",
+    "icon_small_name": "small.pngs",
+    "icon_large_name": "large.png",
     "category": "Network Security",
     "configuration": {
         "fields": [

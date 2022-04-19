@@ -64,7 +64,7 @@
                 "config": "''",
                 "params": [],
                 "version": "1.0.0",
-                "connector": "pensando_psm",
+                "connector": "pensando-policy-servicemanager",
                 "operation": "debug_reset_session_state",
                 "operationTitle": "Debug - Reset Session State",
                 "step_variables": {
@@ -94,7 +94,7 @@
           "uuid": "036d2be2-1c30-44d1-9180-09686b43f1e0",
           "recordTags": [
             "pensando",
-            "pensando_psm"
+            "pensando-policy-servicemanager"
           ],
           "id": 13240,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
@@ -155,7 +155,7 @@
                 "config": "''",
                 "params": [],
                 "version": "1.0.0",
-                "connector": "pensando_psm",
+                "connector": "pensando-policy-servicemanager",
                 "operation": "debug_expire_cookie",
                 "operationTitle": "Debug - Expire Auth Cookie",
                 "step_variables": {
@@ -185,7 +185,7 @@
           "uuid": "0878fe91-ffab-4f05-b6a8-d46100d51287",
           "recordTags": [
             "pensando",
-            "pensando_psm"
+            "pensando-policy-servicemanager"
           ],
           "id": 13241,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
@@ -254,7 +254,7 @@
                   "ipfix_collector_protocol": "udp"
                 },
                 "version": "1.0.0",
-                "connector": "pensando_psm",
+                "connector": "pensando-policy-servicemanager",
                 "operation": "enable_ipfix_export",
                 "operationTitle": "Enable IPFIX Export for Host",
                 "step_variables": {
@@ -284,7 +284,7 @@
           "uuid": "0c693d8e-f5f3-47d9-98c9-fe230dc03ae2",
           "recordTags": [
             "pensando",
-            "pensando_psm"
+            "pensando-policy-servicemanager"
           ],
           "id": 13247,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
@@ -348,7 +348,7 @@
                   "erspan_collector_ip": ""
                 },
                 "version": "1.0.0",
-                "connector": "pensando_psm",
+                "connector": "pensando-policy-servicemanager",
                 "operation": "delete_mirror_export",
                 "operationTitle": "Delete Existing Mirror Traffic Export for Host",
                 "step_variables": {
@@ -378,7 +378,7 @@
           "uuid": "35bb112d-505b-4c42-9945-9ddc39537807",
           "recordTags": [
             "pensando",
-            "pensando_psm"
+            "pensando-policy-servicemanager"
           ],
           "id": 13250,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
@@ -442,7 +442,7 @@
                   "ipfix_collector_ip": ""
                 },
                 "version": "1.0.0",
-                "connector": "pensando_psm",
+                "connector": "pensando-policy-servicemanager",
                 "operation": "delete_ipfix_export",
                 "operationTitle": "Delete existing IPFIX Export for Host",
                 "step_variables": {
@@ -472,7 +472,7 @@
           "uuid": "392db358-85b9-4260-9af2-8701629d4072",
           "recordTags": [
             "pensando",
-            "pensando_psm"
+            "pensando-policy-servicemanager"
           ],
           "id": 13248,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
@@ -533,7 +533,7 @@
                 "config": "''",
                 "params": [],
                 "version": "1.0.0",
-                "connector": "pensando_psm",
+                "connector": "pensando-policy-servicemanager",
                 "operation": "debug_remove_session_state",
                 "operationTitle": "Debug - Remove Session State",
                 "step_variables": {
@@ -563,7 +563,7 @@
           "uuid": "3eb006e8-1fd6-4d52-9dfb-b842fd3e0766",
           "recordTags": [
             "pensando",
-            "pensando_psm"
+            "pensando-policy-servicemanager"
           ],
           "id": 13239,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
@@ -624,7 +624,7 @@
                 "config": "''",
                 "params": [],
                 "version": "1.0.0",
-                "connector": "pensando_psm",
+                "connector": "pensando-policy-servicemanager",
                 "operation": "get_workloads",
                 "operationTitle": "Get Workloads",
                 "step_variables": {
@@ -654,7 +654,7 @@
           "uuid": "44e916c7-916f-4621-a6cd-5c91e2ea5247",
           "recordTags": [
             "pensando",
-            "pensando_psm"
+            "pensando-policy-servicemanager"
           ],
           "id": 13244,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
@@ -717,7 +717,7 @@
                   "ioc_ip": ""
                 },
                 "version": "1.0.0",
-                "connector": "pensando_psm",
+                "connector": "pensando-policy-servicemanager",
                 "operation": "ioc_block_add_ip",
                 "operationTitle": "Add IOC IPs to Blocklist",
                 "step_variables": {
@@ -747,7 +747,7 @@
           "uuid": "586ecac7-d7f6-46a7-ac2b-620840bfa973",
           "recordTags": [
             "pensando",
-            "pensando_psm"
+            "pensando-policy-servicemanager"
           ],
           "id": 13253,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
@@ -808,7 +808,7 @@
                 "config": "''",
                 "params": [],
                 "version": "1.0.0",
-                "connector": "pensando_psm",
+                "connector": "pensando-policy-servicemanager",
                 "operation": "ioc_delete_list",
                 "operationTitle": "Remove IOC Blocklist",
                 "step_variables": {
@@ -838,7 +838,7 @@
           "uuid": "80fe454a-d49a-4034-916a-aba5767e1229",
           "recordTags": [
             "pensando",
-            "pensando_psm"
+            "pensando-policy-servicemanager"
           ],
           "id": 13255,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
@@ -899,7 +899,7 @@
                 "config": "''",
                 "params": [],
                 "version": "1.0.0",
-                "connector": "pensando_psm",
+                "connector": "pensando-policy-servicemanager",
                 "operation": "get_networks",
                 "operationTitle": "Get Networks",
                 "step_variables": {
@@ -929,7 +929,7 @@
           "uuid": "9c229fff-c54b-4c1c-84c2-5c0af8b80eaa",
           "recordTags": [
             "pensando",
-            "pensando_psm"
+            "pensando-policy-servicemanager"
           ],
           "id": 13245,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
@@ -990,7 +990,7 @@
                 "config": "''",
                 "params": [],
                 "version": "1.0.0",
-                "connector": "pensando_psm",
+                "connector": "pensando-policy-servicemanager",
                 "operation": "get_distributedservicecards",
                 "operationTitle": "Get Distributed Service Cards",
                 "step_variables": {
@@ -1020,7 +1020,7 @@
           "uuid": "adab427e-675e-4a06-a64b-a9e558447218",
           "recordTags": [
             "pensando",
-            "pensando_psm"
+            "pensando-policy-servicemanager"
           ],
           "id": 13246,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
@@ -1081,7 +1081,7 @@
                 "config": "''",
                 "params": [],
                 "version": "1.0.0",
-                "connector": "pensando_psm",
+                "connector": "pensando-policy-servicemanager",
                 "operation": "get_network_security_policies",
                 "operationTitle": "Get Network Security Policies",
                 "step_variables": {
@@ -1111,7 +1111,7 @@
           "uuid": "b0dccb8b-78bb-4691-b60d-3a75254fc03d",
           "recordTags": [
             "pensando",
-            "pensando_psm"
+            "pensando-policy-servicemanager"
           ],
           "id": 13242,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
@@ -1182,7 +1182,7 @@
                   "erspan_match_protocols": ""
                 },
                 "version": "1.0.0",
-                "connector": "pensando_psm",
+                "connector": "pensando-policy-servicemanager",
                 "operation": "enable_mirror_export",
                 "operationTitle": "Enable Mirror Traffic Export for Host",
                 "step_variables": {
@@ -1212,7 +1212,7 @@
           "uuid": "c64e98a4-2b63-4fce-885f-b1cfb4d6a792",
           "recordTags": [
             "pensando",
-            "pensando_psm"
+            "pensando-policy-servicemanager"
           ],
           "id": 13249,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
@@ -1275,7 +1275,7 @@
                   "ioc_ip": ""
                 },
                 "version": "1.0.0",
-                "connector": "pensando_psm",
+                "connector": "pensando-policy-servicemanager",
                 "operation": "ioc_block_remove_ip",
                 "operationTitle": "Remove IOC IPs from Blocklist",
                 "step_variables": {
@@ -1305,7 +1305,7 @@
           "uuid": "dd70c396-0422-42ab-aa65-328ba0b99f44",
           "recordTags": [
             "pensando",
-            "pensando_psm"
+            "pensando-policy-servicemanager"
           ],
           "id": 13254,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
@@ -1366,7 +1366,7 @@
                 "config": "''",
                 "params": [],
                 "version": "1.0.0",
-                "connector": "pensando_psm",
+                "connector": "pensando-policy-servicemanager",
                 "operation": "get_alerts",
                 "operationTitle": "Get Alerts",
                 "step_variables": {
@@ -1396,7 +1396,7 @@
           "uuid": "e68f361f-ab12-4353-9b3d-03b1ea1c0608",
           "recordTags": [
             "pensando",
-            "pensando_psm"
+            "pensando-policy-servicemanager"
           ],
           "id": 13243,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
@@ -1459,7 +1459,7 @@
                   "host_source_ip": ""
                 },
                 "version": "1.0.0",
-                "connector": "pensando_psm",
+                "connector": "pensando-policy-servicemanager",
                 "operation": "isolate_host",
                 "operationTitle": "Isolate Host",
                 "step_variables": {
@@ -1489,7 +1489,7 @@
           "uuid": "ece02a08-8365-45b5-b37f-74256ff3ec93",
           "recordTags": [
             "pensando",
-            "pensando_psm"
+            "pensando-policy-servicemanager"
           ],
           "id": 13251,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
@@ -1552,7 +1552,7 @@
                   "host_source_ip": ""
                 },
                 "version": "1.0.0",
-                "connector": "pensando_psm",
+                "connector": "pensando-policy-servicemanager",
                 "operation": "unisolate_host",
                 "operationTitle": "Unisolate Host",
                 "step_variables": {
@@ -1582,7 +1582,7 @@
           "uuid": "f011b19b-019e-4a4d-b3bd-7d62992dc05b",
           "recordTags": [
             "pensando",
-            "pensando_psm"
+            "pensando-policy-servicemanager"
           ],
           "id": 13252,
           "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
@@ -1597,6 +1597,6 @@
   ],
   "exported_tags": [
     "pensando",
-    "pensando_psm"
+    "pensando-policy-servicemanager"
   ]
 }

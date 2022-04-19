@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "label": "Pensando Policy Service Manager",
     "description": "Pensando's Policy and Services Manager (PSM) is a distributed system that leverages an intent-based model to deliver network and security policy to Pensando Distributed Services Cards for services implementation at the edge. This connector facilitates the automated operations related alerts, networks, hosts etc. ",
-    "publisher": "Fortinet",
+    "publisher": "Community",
     "icon_small_name": "pensando_logo_small.jpg",
     "icon_large_name": "pensando_logo_large.jpg",
     "category": "Network Security",
@@ -88,8 +88,8 @@
             "title": "Debug - Remove Session State",
             "description": "Debug login by removing session state from disk.",
             "enabled": false,
-            "category": "",
-            "annotation": "",
+            "category": "investigation",
+            "annotation": "debug_remove_session_state",
             "output_schema": {
                 "result": "",
                 "api_data": ""
@@ -100,8 +100,8 @@
             "title": "Debug - Reset Session State",
             "description": "Debug login by resetting session state on disk.",
             "enabled": false,
-            "category": "",
-            "annotation": "",
+            "category": "investigation",
+            "annotation": "debug_reset_session_state",
             "output_schema": {
                 "result": "",
                 "api_data": ""
@@ -112,8 +112,8 @@
             "title": "Debug - Expire Auth Cookie",
             "description": "Debug login by expiring the auth cookie on disk.",
             "enabled": false,
-            "category": "",
-            "annotation": "",
+            "category": "investigation",
+            "annotation": "debug_expire_cookie",
             "output_schema": {
                 "result": "",
                 "api_data": ""
@@ -124,8 +124,8 @@
             "title": "Get Network Security Policies",
             "description": "Get the Network Security Policy list from the Pensando PSM Server.",
             "enabled": true,
-            "category": "",
-            "annotation": "",
+            "category": "investigation",
+            "annotation": "get_network_security_policies",
             "output_schema": {
                 "result": "",
                 "api_data": ""
@@ -136,8 +136,8 @@
             "title": "Get Alerts",
             "description": "Get a list of Alerts from the Pensando PSM Server.",
             "enabled": true,
-            "category": "",
-            "annotation": "",
+            "category": "investigation",
+            "annotation": "get_alerts",
             "output_schema": {
                 "result": "",
                 "api_data": ""
@@ -148,8 +148,8 @@
             "title": "Get Workloads",
             "description": "Get a list of Workloads from the Pensando PSM Server.",
             "enabled": true,
-            "category": "",
-            "annotation": "",
+            "category": "investigation",
+            "annotation": "get_workloads",
             "output_schema": {
                 "result": "",
                 "api_data": ""
@@ -160,8 +160,8 @@
             "title": "Get Networks",
             "description": "Get a list of Networks from the Pensando PSM Server.",
             "enabled": true,
-            "category": "",
-            "annotation": "",
+            "category": "investigation",
+            "annotation": "get_networks",
             "output_schema": {
                 "result": "",
                 "api_data": ""
@@ -172,8 +172,8 @@
             "title": "Get Distributed Service Cards",
             "description": "Get a list of Distributed Service Cards from the Pensando PSM Server.",
             "enabled": true,
-            "category": "",
-            "annotation": "",
+            "category": "investigation",
+            "annotation": "get_distributedservicecards",
             "output_schema": {
                 "result": "",
                 "api_data": ""
@@ -184,8 +184,8 @@
             "title": "Enable IPFIX Export for Host",
             "description": "Enable IPFIX Flow Export of all flows for a source IP from the Pensando PSM Server.",
             "enabled": true,
-            "category": "",
-            "annotation": "",
+            "category": "investigation",
+            "annotation": "enable_ipfix_export",
             "parameters": [
                 {
                     "title": "Host Source IP",
@@ -270,8 +270,8 @@
             "title": "Delete existing IPFIX Export for Host",
             "description": "Delete IPFIX Flow Export of all flows for a source IP from the Pensando PSM Server.",
             "enabled": true,
-            "category": "",
-            "annotation": "",
+            "category": "investigation",
+            "annotation": "delete_ipfix_export",
             "parameters": [
                 {
                     "title": "Host Source IP",
@@ -304,8 +304,8 @@
             "title": "Enable Mirror Traffic Export for Host",
             "description": "Enable Mirror Traffic Export of traffic flows for a source IP on the Pensand PSM Server.",
             "enabled": true,
-            "category": "",
-            "annotation": "",
+            "category": "investigation",
+            "annotation": "enable_mirror_export",
             "parameters": [
                 {
                     "title": "Host Source IP",
@@ -415,8 +415,8 @@
             "title": "Delete Existing Mirror Traffic Export for Host",
             "description": "Delete ERSPAN Mirror Traffic Export for a source IP from the Pensando PSM Server.",
             "enabled": true,
-            "category": "",
-            "annotation": "",
+            "category": "investigation",
+            "annotation": "delete_mirror_export",
             "parameters": [
                 {
                     "title": "Host Source IP",
@@ -449,8 +449,8 @@
             "title": "Isolate Host",
             "description": "Quarantine a Host (Disallow all North/South/East/West inbound and outbound traffic) on the Pensando PSM Server.",
             "enabled": true,
-            "category": "",
-            "annotation": "",
+            "category": "containment",
+            "annotation": "isolate_host",
             "parameters": [
                 {
                     "title": "Host Source IP",
@@ -473,8 +473,8 @@
             "title": "Unisolate Host",
             "description": "Remove Host quarantine (Remove North/South/East/West inbound and outbound traffic block) on the Pensando PSM Server.",
             "enabled": true,
-            "category": "",
-            "annotation": "",
+            "category": "remediation",
+            "annotation": "unisolate_host",
             "parameters": [
                 {
                     "title": "Host Source IP",
@@ -497,8 +497,8 @@
             "title": "Add IOC IPs to Blocklist",
             "description": "Add one or more IOC IPs to a block list on the Pensando PSM Server.",
             "enabled": true,
-            "category": "",
-            "annotation": "",
+            "category": "containment",
+            "annotation": "ioc_block_add_ip",
             "parameters": [
                 {
                     "title": "IOC IP Address(es)",
@@ -523,8 +523,8 @@
             "title": "Remove IOC IPs from Blocklist",
             "description": "Remove one or more IOC IPs from a block list on the Pensando PSM Server.",
             "enabled": true,
-            "category": "",
-            "annotation": "",
+            "category": "remediation",
+            "annotation": "ioc_block_remove_ip",
             "parameters": [
                 {
                     "title": "IOC IP Address(es)",
@@ -549,8 +549,8 @@
             "title": "Remove IOC Blocklist",
             "description": "Entirely remove the IOC block list from the Pensando PSM Server.",
             "enabled": true,
-            "category": "",
-            "annotation": "",
+            "category": "remediation",
+            "annotation": "ioc_delete_list",
             "output_schema": {
                 "result": "",
                 "api_data": ""

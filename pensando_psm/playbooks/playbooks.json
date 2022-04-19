@@ -2,99 +2,1451 @@
   "type": "workflow_collections",
   "data": [
     {
+      "@context": "/api/3/contexts/WorkflowCollection",
       "@type": "WorkflowCollection",
-      "name": "Sample - Pensando",
-      "description": "Sample Pensando Playbooks",
+      "name": "Sample - Pensando Policy Service Manager - 1.0.0",
+      "description": "Sample playbooks for \"Pensando Policy Service Manager\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
       "visible": true,
-      "image": null,
-      "uuid": "334e0f66-c88e-4560-8ff4-172062412781",
-      "id": 32,
-      "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-      "createDate": 1649960743,
-      "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-      "modifyDate": 1649979427,
-      "recordTags": [
-        "pensando"
-      ],
+      "image": "/api/3/images/a997d3b4-1d64-436d-a5e0-a12cc5b15587",
+      "id": 1408,
+      "createDate": 1650346879,
+      "modifyDate": 1650346879,
+      "recordTags": [],
       "workflows": [
         {
           "@type": "Workflow",
           "triggerLimit": null,
-          "name": "Isolate Compromised Host",
+          "name": "Debug - Reset Session State",
           "aliasName": null,
-          "tag": "pensando",
-          "description": "Isolate a compromised host via Security Policy on the Pensando PSM",
-          "isActive": true,
+          "tag": "#Pensando Policy Service Manager",
+          "description": "Debug login by resetting session state on disk.",
+          "isActive": false,
           "singleRecordExecution": false,
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1649980000,
-          "collection": "/api/3/workflow_collections/334e0f66-c88e-4560-8ff4-172062412781",
+          "lastModifyDate": 1650347103,
+          "collection": "/api/3/workflow_collections/9d0261f8-6cbc-40be-b0f9-7ad0d7dea553",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/abb2d115-c5d4-4547-8c2b-e0f40f8fc834",
+          "triggerStep": "/api/3/workflow_steps/2e1feaf5-d75b-43aa-8f1a-13286af16ed8",
           "steps": [
             {
               "@type": "WorkflowStep",
-              "name": "Compromised Host",
+              "name": "Start",
               "description": null,
               "arguments": {
-                "route": "718e3bf9-f55b-4a37-b9ab-e4524bf9a1c3",
-                "title": "Compromised Host",
+                "route": "5a24a03d-366a-4818-86c5-a01c97cac090",
+                "title": "Pensando Policy Service Manager: Debug - Reset Session State",
                 "resources": [
                   "alerts"
                 ],
-                "inputVariables": [
-                  {
-                    "name": "compromised_host",
-                    "type": "string",
-                    "label": "compromised_host",
-                    "title": "IPv4",
-                    "usable": true,
-                    "tooltip": "",
-                    "dataType": "text",
-                    "formType": "ipv4",
-                    "required": true,
-                    "_expanded": true,
-                    "mmdUpdate": true,
-                    "collection": false,
-                    "searchable": true,
-                    "templateUrl": "app/components/form/fields/webAddress.html",
-                    "defaultValue": "1.1.1.1",
-                    "_previousName": "suspicious_ip",
-                    "lengthConstraint": false,
-                    "allowedEncryption": true,
-                    "allowedGridColumn": true,
-                    "useRecordFieldDefault": false
-                  }
-                ],
+                "inputVariables": [],
                 "step_variables": {
                   "input": {
-                    "params": {
-                      "compromised_host": "{{vars.request.data[\"compromised_host\"]}}"
-                    },
-                    "records": "{{vars.input.records}}"
+                    "records": "{{vars.input.records[0]}}"
                   }
                 },
-                "_promptexpanded": true,
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
                 "singleRecordExecution": false
               },
               "status": null,
               "top": "20",
               "left": "20",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "abb2d115-c5d4-4547-8c2b-e0f40f8fc834",
-              "id": 714
+              "uuid": "2e1feaf5-d75b-43aa-8f1a-13286af16ed8",
+              "id": 36202
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Debug - Reset Session State",
+              "description": null,
+              "arguments": {
+                "name": "Pensando Policy Service Manager",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "pensando_psm",
+                "operation": "debug_reset_session_state",
+                "operationTitle": "Debug - Reset Session State",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "b6abd28d-c76d-4fab-8aa2-19e1a0b117d5",
+              "id": 36203
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Debug - Reset Session State",
+              "targetStep": "/api/3/workflow_steps/b6abd28d-c76d-4fab-8aa2-19e1a0b117d5",
+              "sourceStep": "/api/3/workflow_steps/2e1feaf5-d75b-43aa-8f1a-13286af16ed8",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "09babe60-259f-4dbf-bb39-a8609571f604"
+            }
+          ],
+          "priority": null,
+          "uuid": "036d2be2-1c30-44d1-9180-09686b43f1e0",
+          "recordTags": [
+            "pensando",
+            "pensando_psm"
+          ],
+          "id": 13240,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1650346879,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1650347103,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Debug - Expire Auth Cookie",
+          "aliasName": null,
+          "tag": "#Pensando Policy Service Manager",
+          "description": "Debug login by expiring the auth cookie on disk.",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1650347061,
+          "collection": "/api/3/workflow_collections/9d0261f8-6cbc-40be-b0f9-7ad0d7dea553",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/0276fd88-f1fb-4419-a107-6f7530366516",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "151e280a-d086-4117-9351-6e956f501c6c",
+                "title": "Pensando Policy Service Manager: Debug - Expire Auth Cookie",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "0276fd88-f1fb-4419-a107-6f7530366516",
+              "id": 36204
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Debug - Expire Auth Cookie",
+              "description": null,
+              "arguments": {
+                "name": "Pensando Policy Service Manager",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "pensando_psm",
+                "operation": "debug_expire_cookie",
+                "operationTitle": "Debug - Expire Auth Cookie",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "20e1bc67-bdd3-4110-b454-3c3882e2f02c",
+              "id": 36205
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Debug - Expire Auth Cookie",
+              "targetStep": "/api/3/workflow_steps/20e1bc67-bdd3-4110-b454-3c3882e2f02c",
+              "sourceStep": "/api/3/workflow_steps/0276fd88-f1fb-4419-a107-6f7530366516",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "f5007c88-83e2-410b-84dc-8a2dc1e9ba52"
+            }
+          ],
+          "priority": null,
+          "uuid": "0878fe91-ffab-4f05-b6a8-d46100d51287",
+          "recordTags": [
+            "pensando",
+            "pensando_psm"
+          ],
+          "id": 13241,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1650346879,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1650347061,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Enable IPFIX Export for Host",
+          "aliasName": null,
+          "tag": "#Pensando Policy Service Manager",
+          "description": "Enable IPFIX Flow Export of all flows for a source IP from the Pensando PSM Server.",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1650347164,
+          "collection": "/api/3/workflow_collections/9d0261f8-6cbc-40be-b0f9-7ad0d7dea553",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/753f19b3-f1b2-446f-86f4-3161480a2a6f",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "f7ae5eae-801f-4481-9185-db55b3c76fc3",
+                "title": "Pensando Policy Service Manager: Enable IPFIX Export for Host",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "753f19b3-f1b2-446f-86f4-3161480a2a6f",
+              "id": 36216
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Enable IPFIX Export for Host",
+              "description": null,
+              "arguments": {
+                "name": "Pensando Policy Service Manager",
+                "config": "''",
+                "params": {
+                  "interval": "10s",
+                  "host_source_ip": "",
+                  "template_interval": "5m",
+                  "ipfix_collector_ip": "",
+                  "ipfix_collector_port": "2055",
+                  "ipfix_collector_gw_ip": "",
+                  "ipfix_collector_protocol": "udp"
+                },
+                "version": "1.0.0",
+                "connector": "pensando_psm",
+                "operation": "enable_ipfix_export",
+                "operationTitle": "Enable IPFIX Export for Host",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "685a27c2-c2a6-4fa7-ace8-807cace6568e",
+              "id": 36217
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Enable IPFIX Export for Host",
+              "targetStep": "/api/3/workflow_steps/685a27c2-c2a6-4fa7-ace8-807cace6568e",
+              "sourceStep": "/api/3/workflow_steps/753f19b3-f1b2-446f-86f4-3161480a2a6f",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "5645311f-0273-44d0-a7f2-92f36fb694f8"
+            }
+          ],
+          "priority": null,
+          "uuid": "0c693d8e-f5f3-47d9-98c9-fe230dc03ae2",
+          "recordTags": [
+            "pensando",
+            "pensando_psm"
+          ],
+          "id": 13247,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1650346879,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1650347164,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Delete Existing Mirror Traffic Export for Host",
+          "aliasName": null,
+          "tag": "#Pensando Policy Service Manager",
+          "description": "Delete ERSPAN Mirror Traffic Export for a source IP from the Pensando PSM Server.",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1650347148,
+          "collection": "/api/3/workflow_collections/9d0261f8-6cbc-40be-b0f9-7ad0d7dea553",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/1830631d-a85a-4442-a16c-fe773cd84495",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "0c0fd0b8-acd4-48fe-9c0d-bca74623145b",
+                "title": "Pensando Policy Service Manager: Delete Existing Mirror Traffic Export for Host",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "1830631d-a85a-4442-a16c-fe773cd84495",
+              "id": 36222
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Delete Existing Mirror Traffic Export for Host",
+              "description": null,
+              "arguments": {
+                "name": "Pensando Policy Service Manager",
+                "config": "''",
+                "params": {
+                  "host_source_ip": "",
+                  "erspan_collector_ip": ""
+                },
+                "version": "1.0.0",
+                "connector": "pensando_psm",
+                "operation": "delete_mirror_export",
+                "operationTitle": "Delete Existing Mirror Traffic Export for Host",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "cb2abc10-04ce-4840-96cb-c604e8a9f4e1",
+              "id": 36223
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Delete Existing Mirror Traffic Export for Host",
+              "targetStep": "/api/3/workflow_steps/cb2abc10-04ce-4840-96cb-c604e8a9f4e1",
+              "sourceStep": "/api/3/workflow_steps/1830631d-a85a-4442-a16c-fe773cd84495",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "95128d45-ccd8-4bc4-a122-6955a2792bfc"
+            }
+          ],
+          "priority": null,
+          "uuid": "35bb112d-505b-4c42-9945-9ddc39537807",
+          "recordTags": [
+            "pensando",
+            "pensando_psm"
+          ],
+          "id": 13250,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1650346879,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1650347148,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Delete existing IPFIX Export for Host",
+          "aliasName": null,
+          "tag": "#Pensando Policy Service Manager",
+          "description": "Delete IPFIX Flow Export of all flows for a source IP from the Pensando PSM Server.",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1650347126,
+          "collection": "/api/3/workflow_collections/9d0261f8-6cbc-40be-b0f9-7ad0d7dea553",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/d3986f41-84c0-4c6d-bda0-a6198adc3304",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "fa3f88cc-9429-4df4-95f5-23956a0604f8",
+                "title": "Pensando Policy Service Manager: Delete existing IPFIX Export for Host",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "d3986f41-84c0-4c6d-bda0-a6198adc3304",
+              "id": 36218
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Delete existing IPFIX Export for Host",
+              "description": null,
+              "arguments": {
+                "name": "Pensando Policy Service Manager",
+                "config": "''",
+                "params": {
+                  "host_source_ip": "",
+                  "ipfix_collector_ip": ""
+                },
+                "version": "1.0.0",
+                "connector": "pensando_psm",
+                "operation": "delete_ipfix_export",
+                "operationTitle": "Delete existing IPFIX Export for Host",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "eea3b829-6d15-4517-90e9-e800acea87ff",
+              "id": 36219
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Delete existing IPFIX Export for Host",
+              "targetStep": "/api/3/workflow_steps/eea3b829-6d15-4517-90e9-e800acea87ff",
+              "sourceStep": "/api/3/workflow_steps/d3986f41-84c0-4c6d-bda0-a6198adc3304",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "1a456ac2-fac6-4824-8d74-bf0311d764d4"
+            }
+          ],
+          "priority": null,
+          "uuid": "392db358-85b9-4260-9af2-8701629d4072",
+          "recordTags": [
+            "pensando",
+            "pensando_psm"
+          ],
+          "id": 13248,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1650346879,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1650347126,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Debug - Remove Session State",
+          "aliasName": null,
+          "tag": "#Pensando Policy Service Manager",
+          "description": "Debug login by removing session state from disk.",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1650347086,
+          "collection": "/api/3/workflow_collections/9d0261f8-6cbc-40be-b0f9-7ad0d7dea553",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/cb2cd8f5-8ba0-4a4f-902d-75645c6691ac",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "af485bfc-5a11-4fb7-b044-fce045ce01d5",
+                "title": "Pensando Policy Service Manager: Debug - Remove Session State",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "cb2cd8f5-8ba0-4a4f-902d-75645c6691ac",
+              "id": 36200
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Debug - Remove Session State",
+              "description": null,
+              "arguments": {
+                "name": "Pensando Policy Service Manager",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "pensando_psm",
+                "operation": "debug_remove_session_state",
+                "operationTitle": "Debug - Remove Session State",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "73bffb5a-8818-4908-8fff-b33cd4f24fbe",
+              "id": 36201
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Debug - Remove Session State",
+              "targetStep": "/api/3/workflow_steps/73bffb5a-8818-4908-8fff-b33cd4f24fbe",
+              "sourceStep": "/api/3/workflow_steps/cb2cd8f5-8ba0-4a4f-902d-75645c6691ac",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "05439d2d-a751-4cfc-b5cf-a770874a5797"
+            }
+          ],
+          "priority": null,
+          "uuid": "3eb006e8-1fd6-4d52-9dfb-b842fd3e0766",
+          "recordTags": [
+            "pensando",
+            "pensando_psm"
+          ],
+          "id": 13239,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1650346879,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1650347087,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Workloads",
+          "aliasName": null,
+          "tag": "#Pensando Policy Service Manager",
+          "description": "Get a list of Workloads from the Pensando PSM Server.",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1650347270,
+          "collection": "/api/3/workflow_collections/9d0261f8-6cbc-40be-b0f9-7ad0d7dea553",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/c3997c10-bb3b-4987-971c-69fb987783b1",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "a6cf2ef7-dd45-4dda-8310-7effecc7e568",
+                "title": "Pensando Policy Service Manager: Get Workloads",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "c3997c10-bb3b-4987-971c-69fb987783b1",
+              "id": 36210
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Workloads",
+              "description": null,
+              "arguments": {
+                "name": "Pensando Policy Service Manager",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "pensando_psm",
+                "operation": "get_workloads",
+                "operationTitle": "Get Workloads",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "536213fd-0862-4a77-9ff2-8d893f974e4a",
+              "id": 36211
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Workloads",
+              "targetStep": "/api/3/workflow_steps/536213fd-0862-4a77-9ff2-8d893f974e4a",
+              "sourceStep": "/api/3/workflow_steps/c3997c10-bb3b-4987-971c-69fb987783b1",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "5b4393a4-0723-41a5-b093-6b83fc10b723"
+            }
+          ],
+          "priority": null,
+          "uuid": "44e916c7-916f-4621-a6cd-5c91e2ea5247",
+          "recordTags": [
+            "pensando",
+            "pensando_psm"
+          ],
+          "id": 13244,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1650346879,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1650347271,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Add IOC IPs to Blocklist",
+          "aliasName": null,
+          "tag": "#Pensando Policy Service Manager",
+          "description": "Add one or more IOC IPs to a block list on the Pensando PSM Server.",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1650347040,
+          "collection": "/api/3/workflow_collections/9d0261f8-6cbc-40be-b0f9-7ad0d7dea553",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/1266b8bc-d2c3-408e-9513-6f4c8c34cb4b",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "32ca0b08-f9fd-4ff6-a17e-8e9a9ec21979",
+                "title": "Pensando Policy Service Manager: Add IOC IPs to Blocklist",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "1266b8bc-d2c3-408e-9513-6f4c8c34cb4b",
+              "id": 36228
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Add IOC IPs to Blocklist",
+              "description": null,
+              "arguments": {
+                "name": "Pensando Policy Service Manager",
+                "config": "''",
+                "params": {
+                  "ioc_ip": ""
+                },
+                "version": "1.0.0",
+                "connector": "pensando_psm",
+                "operation": "ioc_block_add_ip",
+                "operationTitle": "Add IOC IPs to Blocklist",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "ccce9d37-7164-444d-a666-d342133a4c29",
+              "id": 36229
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Add IOC IPs to Blocklist",
+              "targetStep": "/api/3/workflow_steps/ccce9d37-7164-444d-a666-d342133a4c29",
+              "sourceStep": "/api/3/workflow_steps/1266b8bc-d2c3-408e-9513-6f4c8c34cb4b",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "5c66893a-43af-480d-b72b-582e912aa8b2"
+            }
+          ],
+          "priority": null,
+          "uuid": "586ecac7-d7f6-46a7-ac2b-620840bfa973",
+          "recordTags": [
+            "pensando",
+            "pensando_psm"
+          ],
+          "id": 13253,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1650346879,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1650347041,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Remove IOC Blocklist",
+          "aliasName": null,
+          "tag": "#Pensando Policy Service Manager",
+          "description": "Entirely remove the IOC block list from the Pensando PSM Server.",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1650347306,
+          "collection": "/api/3/workflow_collections/9d0261f8-6cbc-40be-b0f9-7ad0d7dea553",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/dfa58aaa-fbac-40d3-a4ea-4213bd2bfff7",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "c85e2543-458c-46b4-ad9e-e0e6ee27b6a7",
+                "title": "Pensando Policy Service Manager: Remove IOC Blocklist",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "dfa58aaa-fbac-40d3-a4ea-4213bd2bfff7",
+              "id": 36232
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Remove IOC Blocklist",
+              "description": null,
+              "arguments": {
+                "name": "Pensando Policy Service Manager",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "pensando_psm",
+                "operation": "ioc_delete_list",
+                "operationTitle": "Remove IOC Blocklist",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "4ae617fd-a45a-407f-aaa0-2c89a3cbb5cf",
+              "id": 36233
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Remove IOC Blocklist",
+              "targetStep": "/api/3/workflow_steps/4ae617fd-a45a-407f-aaa0-2c89a3cbb5cf",
+              "sourceStep": "/api/3/workflow_steps/dfa58aaa-fbac-40d3-a4ea-4213bd2bfff7",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "afd61e16-ac0d-4ad5-85b8-34935fe84e4a"
+            }
+          ],
+          "priority": null,
+          "uuid": "80fe454a-d49a-4034-916a-aba5767e1229",
+          "recordTags": [
+            "pensando",
+            "pensando_psm"
+          ],
+          "id": 13255,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1650346879,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1650347306,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Networks",
+          "aliasName": null,
+          "tag": "#Pensando Policy Service Manager",
+          "description": "Get a list of Networks from the Pensando PSM Server.",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1650347234,
+          "collection": "/api/3/workflow_collections/9d0261f8-6cbc-40be-b0f9-7ad0d7dea553",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/b0138dc3-891a-46f6-af12-1267bc8cddb0",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "28706d9c-f9fc-44db-8700-4b4a4d4d8eea",
+                "title": "Pensando Policy Service Manager: Get Networks",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "b0138dc3-891a-46f6-af12-1267bc8cddb0",
+              "id": 36212
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Networks",
+              "description": null,
+              "arguments": {
+                "name": "Pensando Policy Service Manager",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "pensando_psm",
+                "operation": "get_networks",
+                "operationTitle": "Get Networks",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "61583430-28ad-4f9a-ab98-849aedfd47a0",
+              "id": 36213
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Networks",
+              "targetStep": "/api/3/workflow_steps/61583430-28ad-4f9a-ab98-849aedfd47a0",
+              "sourceStep": "/api/3/workflow_steps/b0138dc3-891a-46f6-af12-1267bc8cddb0",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "43dc1956-ef69-4d03-b654-8d862834781a"
+            }
+          ],
+          "priority": null,
+          "uuid": "9c229fff-c54b-4c1c-84c2-5c0af8b80eaa",
+          "recordTags": [
+            "pensando",
+            "pensando_psm"
+          ],
+          "id": 13245,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1650346879,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1650347234,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Distributed Service Cards",
+          "aliasName": null,
+          "tag": "#Pensando Policy Service Manager",
+          "description": "Get a list of Distributed Service Cards from the Pensando PSM Server.",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1650347214,
+          "collection": "/api/3/workflow_collections/9d0261f8-6cbc-40be-b0f9-7ad0d7dea553",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/7f3da834-17b6-49bc-8a00-023da0577007",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "e9f38086-64bc-47b8-919c-15ffb5ebadee",
+                "title": "Pensando Policy Service Manager: Get Distributed Service Cards",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "7f3da834-17b6-49bc-8a00-023da0577007",
+              "id": 36214
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Distributed Service Cards",
+              "description": null,
+              "arguments": {
+                "name": "Pensando Policy Service Manager",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "pensando_psm",
+                "operation": "get_distributedservicecards",
+                "operationTitle": "Get Distributed Service Cards",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "361a7319-db9b-497e-a0b0-6d78f68aa829",
+              "id": 36215
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Distributed Service Cards",
+              "targetStep": "/api/3/workflow_steps/361a7319-db9b-497e-a0b0-6d78f68aa829",
+              "sourceStep": "/api/3/workflow_steps/7f3da834-17b6-49bc-8a00-023da0577007",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "4f6a226c-6afb-4f7a-9741-4ed25d115257"
+            }
+          ],
+          "priority": null,
+          "uuid": "adab427e-675e-4a06-a64b-a9e558447218",
+          "recordTags": [
+            "pensando",
+            "pensando_psm"
+          ],
+          "id": 13246,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1650346879,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1650347215,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Network Security Policies",
+          "aliasName": null,
+          "tag": "#Pensando Policy Service Manager",
+          "description": "Get the Network Security Policy list from the Pensando PSM Server.",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1650347251,
+          "collection": "/api/3/workflow_collections/9d0261f8-6cbc-40be-b0f9-7ad0d7dea553",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/396a08f2-9dba-4895-b767-26a76c921e52",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "731c0880-4806-406c-9ddd-3ed4a647af2a",
+                "title": "Pensando Policy Service Manager: Get Network Security Policies",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "396a08f2-9dba-4895-b767-26a76c921e52",
+              "id": 36206
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Network Security Policies",
+              "description": null,
+              "arguments": {
+                "name": "Pensando Policy Service Manager",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "pensando_psm",
+                "operation": "get_network_security_policies",
+                "operationTitle": "Get Network Security Policies",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "0568a9bc-d469-4585-980e-91ccc420cdb0",
+              "id": 36207
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Network Security Policies",
+              "targetStep": "/api/3/workflow_steps/0568a9bc-d469-4585-980e-91ccc420cdb0",
+              "sourceStep": "/api/3/workflow_steps/396a08f2-9dba-4895-b767-26a76c921e52",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "09a253b3-3580-455a-ba99-4231944427fe"
+            }
+          ],
+          "priority": null,
+          "uuid": "b0dccb8b-78bb-4691-b60d-3a75254fc03d",
+          "recordTags": [
+            "pensando",
+            "pensando_psm"
+          ],
+          "id": 13242,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1650346879,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1650347251,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Enable Mirror Traffic Export for Host",
+          "aliasName": null,
+          "tag": "#Pensando Policy Service Manager",
+          "description": "Enable Mirror Traffic Export of traffic flows for a source IP on the Pensand PSM Server.",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1650347182,
+          "collection": "/api/3/workflow_collections/9d0261f8-6cbc-40be-b0f9-7ad0d7dea553",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/00340e2d-2d2f-431d-aa9e-51536c53d632",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "ff3de10a-c039-4725-a45d-97898ed7b0d3",
+                "title": "Pensando Policy Service Manager: Enable Mirror Traffic Export for Host",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "00340e2d-2d2f-431d-aa9e-51536c53d632",
+              "id": 36220
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Enable Mirror Traffic Export for Host",
+              "description": null,
+              "arguments": {
+                "name": "Pensando Policy Service Manager",
+                "config": "''",
+                "params": {
+                  "erspan_id": "1",
+                  "strip_vlan": false,
+                  "erspan_type": "erspan_type_3",
+                  "packet_size": "",
+                  "host_source_ip": "",
+                  "erspan_collector_ip": "",
+                  "erspan_match_dest_ip": "",
+                  "erspan_collector_gw_ip": "",
+                  "erspan_match_protocols": ""
+                },
+                "version": "1.0.0",
+                "connector": "pensando_psm",
+                "operation": "enable_mirror_export",
+                "operationTitle": "Enable Mirror Traffic Export for Host",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "1f6a61fa-f3b4-4385-819c-c02195357c26",
+              "id": 36221
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Enable Mirror Traffic Export for Host",
+              "targetStep": "/api/3/workflow_steps/1f6a61fa-f3b4-4385-819c-c02195357c26",
+              "sourceStep": "/api/3/workflow_steps/00340e2d-2d2f-431d-aa9e-51536c53d632",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "1bda2dff-c2a6-49ce-bc51-367867bfd03f"
+            }
+          ],
+          "priority": null,
+          "uuid": "c64e98a4-2b63-4fce-885f-b1cfb4d6a792",
+          "recordTags": [
+            "pensando",
+            "pensando_psm"
+          ],
+          "id": 13249,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1650346879,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1650347182,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Remove IOC IPs from Blocklist",
+          "aliasName": null,
+          "tag": "#Pensando Policy Service Manager",
+          "description": "Remove one or more IOC IPs from a block list on the Pensando PSM Server.",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1650347323,
+          "collection": "/api/3/workflow_collections/9d0261f8-6cbc-40be-b0f9-7ad0d7dea553",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/07d97ca8-1a42-49e5-852f-12f3385aa35a",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "45dd5d0c-67ab-437a-8472-1eb02afd6d21",
+                "title": "Pensando Policy Service Manager: Remove IOC IPs from Blocklist",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "07d97ca8-1a42-49e5-852f-12f3385aa35a",
+              "id": 36230
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Remove IOC IPs from Blocklist",
+              "description": null,
+              "arguments": {
+                "name": "Pensando Policy Service Manager",
+                "config": "''",
+                "params": {
+                  "ioc_ip": ""
+                },
+                "version": "1.0.0",
+                "connector": "pensando_psm",
+                "operation": "ioc_block_remove_ip",
+                "operationTitle": "Remove IOC IPs from Blocklist",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "025197b0-b845-4043-afc9-55671338030c",
+              "id": 36231
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Remove IOC IPs from Blocklist",
+              "targetStep": "/api/3/workflow_steps/025197b0-b845-4043-afc9-55671338030c",
+              "sourceStep": "/api/3/workflow_steps/07d97ca8-1a42-49e5-852f-12f3385aa35a",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "d9364027-b326-46db-89fa-ac1046886dc3"
+            }
+          ],
+          "priority": null,
+          "uuid": "dd70c396-0422-42ab-aa65-328ba0b99f44",
+          "recordTags": [
+            "pensando",
+            "pensando_psm"
+          ],
+          "id": 13254,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1650346879,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1650347324,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Alerts",
+          "aliasName": null,
+          "tag": "#Pensando Policy Service Manager",
+          "description": "Get a list of Alerts from the Pensando PSM Server.",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1650347199,
+          "collection": "/api/3/workflow_collections/9d0261f8-6cbc-40be-b0f9-7ad0d7dea553",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/91db51fb-596d-4da0-893f-ed4db70d0830",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "edcdd849-85de-4166-959a-cb7b36c50176",
+                "title": "Pensando Policy Service Manager: Get Alerts",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "91db51fb-596d-4da0-893f-ed4db70d0830",
+              "id": 36208
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Alerts",
+              "description": null,
+              "arguments": {
+                "name": "Pensando Policy Service Manager",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "pensando_psm",
+                "operation": "get_alerts",
+                "operationTitle": "Get Alerts",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "1bb8371c-d594-43da-906a-1a206ee9b7cc",
+              "id": 36209
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Alerts",
+              "targetStep": "/api/3/workflow_steps/1bb8371c-d594-43da-906a-1a206ee9b7cc",
+              "sourceStep": "/api/3/workflow_steps/91db51fb-596d-4da0-893f-ed4db70d0830",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "3539b7b6-c7fe-4b01-8e61-7550cf0e7b61"
+            }
+          ],
+          "priority": null,
+          "uuid": "e68f361f-ab12-4353-9b3d-03b1ea1c0608",
+          "recordTags": [
+            "pensando",
+            "pensando_psm"
+          ],
+          "id": 13243,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1650346879,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1650347199,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Isolate Host",
+          "aliasName": null,
+          "tag": "#Pensando Policy Service Manager",
+          "description": "Quarantine a Host (Disallow all North/South/East/West inbound and outbound traffic) on the Pensando PSM Server.",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1650347291,
+          "collection": "/api/3/workflow_collections/9d0261f8-6cbc-40be-b0f9-7ad0d7dea553",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/c06e4347-6a54-4bc7-bd1d-6a19a79e76de",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "a2c57830-f0e9-402c-974d-89a2bb960d24",
+                "title": "Pensando Policy Service Manager: Isolate Host",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "c06e4347-6a54-4bc7-bd1d-6a19a79e76de",
+              "id": 36224
             },
             {
               "@type": "WorkflowStep",
@@ -102,165 +1454,141 @@
               "description": null,
               "arguments": {
                 "name": "Pensando Policy Service Manager",
-                "config": "274f0673-14d0-4a2a-98a8-a13566ddb6ac",
+                "config": "''",
                 "params": {
-                  "host_source_ip": "{{vars.input.params['compromised_host']}}"
+                  "host_source_ip": ""
                 },
                 "version": "1.0.0",
                 "connector": "pensando_psm",
                 "operation": "isolate_host",
                 "operationTitle": "Isolate Host",
-                "pickFromTenant": false,
-                "step_variables": []
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
               },
               "status": null,
-              "top": "220",
-              "left": "200",
+              "top": "120",
+              "left": "188",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "d1fe30f8-d800-4157-add6-14f864ce659d",
-              "id": 715
+              "uuid": "b881c75e-8273-4c9b-b28a-437a6e811a4b",
+              "id": 36225
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Alerts -> PensandoAddToIOCBlockList",
-              "targetStep": "/api/3/workflow_steps/d1fe30f8-d800-4157-add6-14f864ce659d",
-              "sourceStep": "/api/3/workflow_steps/abb2d115-c5d4-4547-8c2b-e0f40f8fc834",
+              "name": "Start -> Isolate Host",
+              "targetStep": "/api/3/workflow_steps/b881c75e-8273-4c9b-b28a-437a6e811a4b",
+              "sourceStep": "/api/3/workflow_steps/c06e4347-6a54-4bc7-bd1d-6a19a79e76de",
               "label": null,
               "isExecuted": false,
-              "uuid": "4f36a642-2434-44cd-bd50-cbf0a228866c"
+              "uuid": "ab91838d-151a-4a9f-af13-bcb4e1c710cc"
             }
           ],
           "priority": null,
-          "uuid": "1716d543-5ab1-4ff8-966f-c170703fbe30",
+          "uuid": "ece02a08-8365-45b5-b37f-74256ff3ec93",
           "recordTags": [
-            "pensando"
+            "pensando",
+            "pensando_psm"
           ],
-          "id": 215,
-          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "createDate": 1649961726,
+          "id": 13251,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1650346879,
           "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1649980000,
+          "modifyDate": 1650347291,
           "owners": [],
           "isPrivate": false
         },
         {
           "@type": "Workflow",
           "triggerLimit": null,
-          "name": "Block IOC",
+          "name": "Unisolate Host",
           "aliasName": null,
-          "tag": "pensando",
-          "description": "Add IOC IP addresses to the block list",
-          "isActive": true,
+          "tag": "#Pensando Policy Service Manager",
+          "description": "Remove Host quarantine (Remove North/South/East/West inbound and outbound traffic block) on the Pensando PSM Server.",
+          "isActive": false,
           "singleRecordExecution": false,
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1649979878,
-          "collection": "/api/3/workflow_collections/334e0f66-c88e-4560-8ff4-172062412781",
+          "lastModifyDate": 1650347341,
+          "collection": "/api/3/workflow_collections/9d0261f8-6cbc-40be-b0f9-7ad0d7dea553",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/7525d08a-8990-4727-bec5-505230d2cf6d",
+          "triggerStep": "/api/3/workflow_steps/1c4a243f-d0e7-49e1-8ad7-064afd2d4885",
           "steps": [
             {
               "@type": "WorkflowStep",
-              "name": "Alerts",
+              "name": "Start",
               "description": null,
               "arguments": {
-                "route": "f62ff8c4-c3ad-4c48-9cfd-0342b8dd00d6",
-                "title": "Pensando Block IOC",
+                "route": "f556d86f-7846-4e77-92f6-ce264ac6070c",
+                "title": "Pensando Policy Service Manager: Unisolate Host",
                 "resources": [
                   "alerts"
                 ],
-                "inputVariables": [
-                  {
-                    "name": "suspicious_ip",
-                    "type": "string",
-                    "label": "suspicious_ip",
-                    "tooltip": "",
-                    "dataType": "text",
-                    "formType": "text",
-                    "required": true,
-                    "_expanded": true,
-                    "defaultValue": "1.1.1.1",
-                    "_previousName": "suspicious_i",
-                    "useRecordFieldDefault": false
-                  }
-                ],
+                "inputVariables": [],
                 "step_variables": {
                   "input": {
-                    "params": {
-                      "suspicious_ip": "{{vars.request.data[\"suspicious_ip\"]}}"
-                    },
-                    "records": "{{vars.input.records}}"
+                    "records": "{{vars.input.records[0]}}"
                   }
                 },
-                "_promptexpanded": true,
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
                 "singleRecordExecution": false
               },
               "status": null,
               "top": "20",
               "left": "20",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "7525d08a-8990-4727-bec5-505230d2cf6d",
-              "id": 711
+              "uuid": "1c4a243f-d0e7-49e1-8ad7-064afd2d4885",
+              "id": 36226
             },
             {
               "@type": "WorkflowStep",
-              "name": "Block IOC",
+              "name": "Unisolate Host",
               "description": null,
               "arguments": {
                 "name": "Pensando Policy Service Manager",
-                "config": "274f0673-14d0-4a2a-98a8-a13566ddb6ac",
+                "config": "''",
                 "params": {
-                  "ioc_ip": "{{vars.input.params['suspicious_ip']}}"
+                  "host_source_ip": ""
                 },
                 "version": "1.0.0",
                 "connector": "pensando_psm",
-                "operation": "ioc_block_add_ip",
-                "operationTitle": "Add IOC IPs to Blocklist",
-                "pickFromTenant": false,
-                "step_variables": []
+                "operation": "unisolate_host",
+                "operationTitle": "Unisolate Host",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
               },
               "status": null,
-              "top": "220",
-              "left": "200",
+              "top": "120",
+              "left": "188",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "b13f7422-2022-44b7-8b86-75f37a2ac679",
-              "id": 713
+              "uuid": "fbee012a-8ef7-4ae2-bf62-547d836abf18",
+              "id": 36227
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Alerts -> PensandoAddToIOCBlockList",
-              "targetStep": "/api/3/workflow_steps/b13f7422-2022-44b7-8b86-75f37a2ac679",
-              "sourceStep": "/api/3/workflow_steps/7525d08a-8990-4727-bec5-505230d2cf6d",
+              "name": "Start -> Unisolate Host",
+              "targetStep": "/api/3/workflow_steps/fbee012a-8ef7-4ae2-bf62-547d836abf18",
+              "sourceStep": "/api/3/workflow_steps/1c4a243f-d0e7-49e1-8ad7-064afd2d4885",
               "label": null,
               "isExecuted": false,
-              "uuid": "ff7cae5d-6915-4b73-b8fa-39124b2aca47"
+              "uuid": "eda891c1-dcb6-40fa-8204-ae3cf76f904d"
             }
           ],
           "priority": null,
-          "uuid": "fb4dbc15-8151-42c8-8876-ded9f0a9f6e9",
+          "uuid": "f011b19b-019e-4a4d-b3bd-7d62992dc05b",
           "recordTags": [
-            "pensando"
+            "pensando",
+            "pensando_psm"
           ],
-          "id": 214,
-          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "createDate": 1649960976,
+          "id": 13252,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1650346879,
           "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1649979877,
+          "modifyDate": 1650347341,
           "owners": [],
           "isPrivate": false
         }
@@ -268,6 +1596,7 @@
     }
   ],
   "exported_tags": [
-    "pensando"
+    "pensando",
+    "pensando_psm"
   ]
 }

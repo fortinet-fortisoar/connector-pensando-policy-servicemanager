@@ -17,4 +17,22 @@ from .ioc_block_add_ip import ioc_block_add_ip
 from .ioc_block_remove_ip import ioc_block_remove_ip
 from .ioc_delete_list import ioc_delete_list
  
-supported_operations = {'debug_remove_session_state': debug_remove_session_state, 'debug_reset_session_state': debug_reset_session_state, 'debug_expire_cookie': debug_expire_cookie, 'get_network_security_policies': get_network_security_policies, 'get_alerts': get_alerts, 'get_workloads': get_workloads, 'get_networks': get_networks, 'get_distributedservicecards': get_distributedservicecards, 'enable_ipfix_export': enable_ipfix_export, 'delete_ipfix_export': delete_ipfix_export, 'enable_mirror_export': enable_mirror_export, 'delete_mirror_export': delete_mirror_export, 'isolate_host': isolate_host, 'unisolate_host': unisolate_host, 'ioc_block_add_ip': ioc_block_add_ip, 'ioc_block_remove_ip': ioc_block_remove_ip, 'ioc_delete_list': ioc_delete_list, }
+supported_operations = {
+    "debug_remove_session_state": debug_remove_session_state,
+    "debug_reset_session_state": debug_reset_session_state,
+    "debug_expire_cookie": debug_expire_cookie,
+    "get_network_security_policies": get_network_security_policies,
+    "get_alerts": get_alerts,
+    "get_workloads": get_workloads,
+    "get_networks": get_networks,
+    "get_distributedservicecards": get_distributedservicecards,
+    "enable_ipfix_export": enable_ipfix_export,
+    "delete_ipfix_export": delete_ipfix_export,
+    "enable_mirror_export": enable_mirror_export,
+    "delete_mirror_export": delete_mirror_export,
+    "isolate_host": isolate_host,
+    "unisolate_host": unisolate_host,
+    "ioc_block_add_ip": ioc_block_add_ip,
+    "ioc_block_remove_ip": ioc_block_remove_ip,
+    "ioc_delete_list": ioc_delete_list
+}

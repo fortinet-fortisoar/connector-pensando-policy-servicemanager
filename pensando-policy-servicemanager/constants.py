@@ -1,4 +1,4 @@
-LOGGER_NAME = 'pensando_psm'
+LOGGER_NAME = 'pensando-policy-servicemanager'
 TMP_FILE_ROOT = '/tmp'
 PSM_SESSION_FILE = f'{LOGGER_NAME}_state_session'
 PSM_COOKIE_EXP_FILE = f'{LOGGER_NAME}_state_cookie_expiration'

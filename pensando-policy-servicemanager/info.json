@@ -2,10 +2,13 @@
     "name": "pensando-policy-servicemanager",
     "version": "1.0.0",
     "label": "Pensando Policy Service Manager",
-    "description": "Pensando's Policy and Services Manager (PSM) is a distributed system that leverages an intent-based model to deliver network and security policy to Pensando Distributed Services Cards for services implementation at the edge. This connector facilitates the automated operations related alerts, networks, hosts etc. ",
+    "description": "Pensando's Policy and Services Manager (PSM) is a distributed system that leverages an intent-based model to deliver network and security policy to Pensando Distributed Services Cards for services implementation at the edge. ",
     "publisher": "Community",
+    "cs_approved": false,
+    "cs_compatible": true,
     "icon_small_name": "small.png",
     "icon_large_name": "large.png",
+    "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/pensando-policy-service-manager/267/pensando-policy-service-manager-v1-0-0",
     "category": "Network Security",
     "configuration": {
         "fields": [
@@ -16,7 +19,7 @@
                 "required": true,
                 "visible": true,
                 "editable": true,
-                "description": "Server Address of the Pensando PSM server to which you will connect and perform the automated operations."
+                "description": "The address of the Pensando PSM server to which you will connect and perform the automated operations."
             },
             {
                 "title": "Server Port",
@@ -26,7 +29,7 @@
                 "visible": true,
                 "editable": true,
                 "value": "443",
-                "description": "Server Port of the Pensando PSM server to which you will connect and perform the automated operations."
+                "description": "The port of the Pensando PSM server to which you will connect and perform the automated operations. "
             },
             {
                 "title": "Tenant",
@@ -36,7 +39,7 @@
                 "visible": true,
                 "editable": true,
                 "value": "default",
-                "description": "Tenant of the Pensando PSM server to which you will connect and perform the automated operations."
+                "description": "The tenant of the Pensando PSM server to which you will connect and perform the automated operations. "
             },
             {
                 "title": "Username",
@@ -45,7 +48,7 @@
                 "required": true,
                 "visible": true,
                 "editable": true,
-                "description": "Username on the Pensando PSM server to which you will connect and perform the automated operations."
+                "description": "The username used to access the Pensando PSM server to which you will connect and perform the automated operations. "
             },
             {
                 "title": "Password",
@@ -54,7 +57,7 @@
                 "required": true,
                 "visible": true,
                 "editable": true,
-                "description": "Password on the Pensando PSM server to which you will connect and perform the automated operations."
+                "description": "The password used to access the Pensando PSM server to which you will connect and perform the automated operations. "
             },
             {
                 "title": "Protocol",
@@ -68,7 +71,7 @@
                     "HTTP",
                     "HTTPS"
                 ],
-                "description": "Protocol of the Pensando PSM server to which you will connect and perform the automated operations."
+                "description": "The protocol used to connect the Pensando PSM server to which you will connect and perform the automated operations. You can choose between HTTPS or HTTP. "
             },
             {
                 "title": "Verify SSL",
@@ -78,7 +81,7 @@
                 "visible": true,
                 "editable": true,
                 "value": true,
-                "description": "When using HTTPS protocol, verify the SSL certificate on the Pensando PSM server to which you will connect and perform the automated operations."
+                "description": "Specifies whether the SSL certificate for the server is to be verified or not. \nBy default, this option is set as True. "
             }
         ]
     },
@@ -86,7 +89,7 @@
         {
             "operation": "debug_remove_session_state",
             "title": "Debug - Remove Session State",
-            "description": "Debug login by removing session state from disk.",
+            "description": "Debugs the login by removing the session state from the disk. ",
             "enabled": false,
             "category": "investigation",
             "annotation": "debug_remove_session_state",
@@ -99,7 +102,7 @@
         {
             "operation": "debug_reset_session_state",
             "title": "Debug - Reset Session State",
-            "description": "Debug login by resetting session state on disk.",
+            "description": "Debugs the login by resetting the session state on the disk. ",
             "enabled": false,
             "category": "investigation",
             "annotation": "debug_reset_session_state",
@@ -112,7 +115,7 @@
         {
             "operation": "debug_expire_cookie",
             "title": "Debug - Expire Auth Cookie",
-            "description": "Debug login by expiring the auth cookie on disk.",
+            "description": "Debugs the login by expiring the authentication cookie on the disk. ",
             "enabled": false,
             "category": "investigation",
             "annotation": "debug_expire_cookie",
@@ -125,7 +128,7 @@
         {
             "operation": "get_network_security_policies",
             "title": "Get Network Security Policies",
-            "description": "Get the Network Security Policy list from the Pensando PSM Server.",
+            "description": "Retrieves the list of network security policies from the Pensando PSM server. ",
             "enabled": true,
             "category": "investigation",
             "annotation": "get_network_security_policies",
@@ -138,7 +141,7 @@
         {
             "operation": "get_alerts",
             "title": "Get Alerts",
-            "description": "Get a list of Alerts from the Pensando PSM Server.",
+            "description": "Retrieves the list of alerts from the Pensando PSM server. ",
             "enabled": true,
             "category": "investigation",
             "annotation": "get_alerts",
@@ -151,7 +154,7 @@
         {
             "operation": "get_workloads",
             "title": "Get Workloads",
-            "description": "Get a list of Workloads from the Pensando PSM Server.",
+            "description": "Retrieves the list of workloads from the Pensando PSM server. ",
             "enabled": true,
             "category": "investigation",
             "annotation": "get_workloads",
@@ -164,7 +167,7 @@
         {
             "operation": "get_networks",
             "title": "Get Networks",
-            "description": "Get a list of Networks from the Pensando PSM Server.",
+            "description": "Retrieves the list of networks from the Pensando PSM server. ",
             "enabled": true,
             "category": "investigation",
             "annotation": "get_networks",
@@ -177,7 +180,7 @@
         {
             "operation": "get_distributedservicecards",
             "title": "Get Distributed Service Cards",
-            "description": "Get a list of Distributed Service Cards from the Pensando PSM Server.",
+            "description": "Retrieves the list of distributed service cards from the Pensando PSM server.",
             "enabled": true,
             "category": "investigation",
             "annotation": "get_distributedservicecards",
@@ -190,7 +193,7 @@
         {
             "operation": "enable_ipfix_export",
             "title": "Enable IPFIX Export for Host",
-            "description": "Enable IPFIX Flow Export of all flows for a source IP from the Pensando PSM Server.",
+            "description": "Enables IPFIX Flow Export of all flows for a source IP from the Pensando PSM server based on the IP address of the host source IP, the destination IP address of the IPFIX collector, and other input parameters you have specified.",
             "enabled": true,
             "category": "investigation",
             "annotation": "enable_ipfix_export",
@@ -203,7 +206,7 @@
                     "type": "text",
                     "name": "host_source_ip",
                     "value": "",
-                    "description": "Source IP of host to enable IPFIX flow export."
+                    "description": "Specify the source IP of the host whose IPFIX flow exports you want to enable on the Pensando PSM server. "
                 },
                 {
                     "title": "Interval",
@@ -214,7 +217,7 @@
                     "name": "interval",
                     "value": "10s",
                     "tooltip": "Should be a valid time duration between 1s and 24h0m0s. Example: 60s",
-                    "description": "Interval defines how often to push the records to an external collector. The value is specified as a string format, '10s', '20m'. Should be a valid time duration between 1s and 24h0m0s. Example: 60s"
+                    "description": "Specify the time interval for pushing the records to an external collector. You must specify the value in the 'string' format, for example, '10s', '20m'. It should also be a valid time duration between 1s and 24h0m0s. For example, '60s'."
                 },
                 {
                     "title": "Template Interval",
@@ -225,7 +228,7 @@
                     "name": "template_interval",
                     "value": "5m",
                     "tooltip": "Should be a valid time duration between 1m0s and 30m0s. Example: 15m",
-                    "description": "Template Interval defines how often to send IPFIX templates to an external collector. The value is specified as a string format, '1m', '20m'. Should be a valid time duration between 1m0s and 30m0s. Example: 15m"
+                    "description": "Specify the time interval for sending IPFIX templates to an external collector. You must specify the value in the 'string' format, for example, '1m', '20m'. It should also be a valid time duration between 1m0s and 30m0s. For example, '15m'."
                 },
                 {
                     "title": "IPFIX Collector Destination IP",
@@ -235,7 +238,7 @@
                     "type": "text",
                     "name": "ipfix_collector_ip",
                     "value": "",
-                    "description": "IP address of the IPFIX Collector."
+                    "description": "Specify the IP address of the IPFIX collector. "
                 },
                 {
                     "title": "IPFIX Collector Destination Gateway IP",
@@ -245,7 +248,7 @@
                     "type": "text",
                     "name": "ipfix_collector_gw_ip",
                     "value": "",
-                    "description": "Gateway IP address for the IPFIX Collector."
+                    "description": "Specify the gateway IP address for the IPFIX Collector. "
                 },
                 {
                     "title": "IPFIX Collector Destination Protocol",
@@ -255,7 +258,7 @@
                     "type": "text",
                     "name": "ipfix_collector_protocol",
                     "value": "udp",
-                    "description": "Protocol of the IPFIX Collector."
+                    "description": "Specify the protocol of the IPFIX Collector."
                 },
                 {
                     "title": "IPFIX Collector Destination Port",
@@ -265,7 +268,7 @@
                     "type": "text",
                     "name": "ipfix_collector_port",
                     "value": "2055",
-                    "description": "Destination port of the IPFIX Collector."
+                    "description": "Specify the destination port of the IPFIX Collector."
                 }
             ],
             "output_schema": {
@@ -276,7 +279,7 @@
         {
             "operation": "delete_ipfix_export",
             "title": "Delete existing IPFIX Export for Host",
-            "description": "Delete IPFIX Flow Export of all flows for a source IP from the Pensando PSM Server.",
+            "description": "Deletes IPFIX Flow Export of all flows for a source IP from the Pensando PSM server based on the IP address of the host source IP and the destination IP address of the IPFIX collector you have specified.",
             "enabled": true,
             "category": "investigation",
             "annotation": "delete_ipfix_export",
@@ -289,7 +292,7 @@
                     "type": "text",
                     "name": "host_source_ip",
                     "value": "",
-                    "description": "Source IP of host to delete IPFIX flow export."
+                    "description": "Specify the source IP of the host whose IPFIX flow exports you want to delete from the Pensando PSM server. "
                 },
                 {
                     "title": "IPFIX Collector Destination IP",
@@ -299,7 +302,7 @@
                     "type": "text",
                     "name": "ipfix_collector_ip",
                     "value": "",
-                    "description": "IP address of the IPFIX Collector."
+                    "description": "Specify the destination port of the IPFIX Collector. "
                 }
             ],
             "output_schema": {
@@ -310,7 +313,7 @@
         {
             "operation": "enable_mirror_export",
             "title": "Enable Mirror Traffic Export for Host",
-            "description": "Enable Mirror Traffic Export of traffic flows for a source IP on the Pensand PSM Server.",
+            "description": "Enables Mirror Traffic Export of traffic flows for a source IP on the Pensando PSM server based on the IP address of the host source IP, ERSPAN ID, and other input parameters you have specified.",
             "enabled": true,
             "category": "investigation",
             "annotation": "enable_mirror_export",
@@ -323,7 +326,7 @@
                     "type": "text",
                     "name": "host_source_ip",
                     "value": "",
-                    "description": "Source IP of host to enable Mirrof Traffic export."
+                    "description": "Specify the source IP of the host whose Mirror traffic exports you want to enable on the Pensando PSM server."
                 },
                 {
                     "title": "ERSPAN ID",
@@ -334,7 +337,7 @@
                     "name": "erspan_id",
                     "value": "1",
                     "placeholder" : "Value should be between 1 and 1023.",
-                    "description": "Value should be between 1 and 1023."
+                    "description": "Specify the ERSPAN ID, the value of which must be between 1 and 1023."
                 },
                 {
                     "title": "Packet Size",
@@ -345,7 +348,7 @@
                     "name": "packet_size",
                     "value": "",
                     "placeholder": "Value should be between 64 and 2048.",
-                    "description": "Max size of a mirrored packet. Packet size is not checked by default. Value should be between 64 and 2048."
+                    "description": "Specify the maximum size of a mirrored packet. The packet size is not checked by default, and its value must be between 64 and 2048."
                 },
                 {
                     "title": "ERSPAN Type",
@@ -359,7 +362,7 @@
                     ],
                     "name": "erspan_type",
                     "value": "erspan_type_3",
-                    "description": "Type of ERSPAN Collector."
+                    "description": "Select the type of ERSPAN collector. You can choose between erspan_type_2 or erspan_type_3. "
                 },
                 {
                     "title": "ERSPAN Collector Destination IP",
@@ -369,7 +372,7 @@
                     "type": "text",
                     "name": "erspan_collector_ip",
                     "value": "",
-                    "description": "IP address of the ERSPAN Collector."
+                    "description": "Specify the destination IP address of the ERSPAN Collector."
                 },
                 {
                     "title": "ERSPAN Collector Destination Gateway IP",
@@ -379,7 +382,7 @@
                     "type": "text",
                     "name": "erspan_collector_gw_ip",
                     "value": "",
-                    "description": "Gateway IP address for the ERSPAN Collector."
+                    "description": "Specify the destination Gateway IP of the ERSPAN Collector. "
                 },
                 {
                     "title": "Strip VLAN",
@@ -389,7 +392,7 @@
                     "type": "checkbox",
                     "name": "strip_vlan",
                     "value": false,
-                    "description": "Remove VLAN from mirrored packets."
+                    "description": "Select this option to remove VLAN from the mirrored packets."
                 },
                 {
                     "title": "Match Destination IP Addresses",
@@ -399,7 +402,7 @@
                     "type": "text",
                     "name": "erspan_match_dest_ip",
                     "value": "",
-                    "description": "Destination IPs to match for mirrored packets. Can be a comma seperated list or a JSON Array. e.g. '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]'"
+                    "description": "Specify the destination IPs to be matched for the mirrored packets. You can specify a comma-separated list of a JSON array of IP addresses. For example, '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]' "
                 },
                 {
                     "title": "Match Protocols and Ports",
@@ -410,7 +413,7 @@
                     "name": "erspan_match_protocols",
                     "value": "",
                     "placeholder": "e.g. [\"any\", \"icmp, udp/500\", \"tcp/80-88\"]",
-                    "description": "Protocols and ports/port ranges to match for mirrored packets. Can be a comma seperated list or a JSON Array. e.g. 'any, icmp, udp/500, tcp/80-88' or '[\"any\", \"icmp, udp/500\", \"tcp/80-88\"]'"
+                    "description": "Specify the protocols and ports or port range to be matched for the mirrored packets. You can specify a comma-separated list of a JSON array of protocols and ports. For example, 'any, icmp, udp/500, tcp/80-88' or '[\"any\", \"icmp, udp/500\", \"tcp/80-88\"]' "
                 }
             ],
             "output_schema": {
@@ -421,7 +424,7 @@
         {
             "operation": "delete_mirror_export",
             "title": "Delete Existing Mirror Traffic Export for Host",
-            "description": "Delete ERSPAN Mirror Traffic Export for a source IP from the Pensando PSM Server.",
+            "description": "Deletes ERSPAN Mirror Traffic Export of all flows for a source IP from the Pensando PSM server based on the IP address of the host source IP and the destination IP address of the ERSPAN collector you have specified.",
             "enabled": true,
             "category": "investigation",
             "annotation": "delete_mirror_export",
@@ -434,7 +437,7 @@
                     "type": "text",
                     "name": "host_source_ip",
                     "value": "",
-                    "description": "Source IP of host to delete Mirror Traffic export."
+                    "description": "Specify the source IP of the host whose Mirror traffic exports you want to delete from the Pensando PSM server. "
                 },
                 {
                     "title": "ERSPAN Collector Destination IP",
@@ -444,7 +447,7 @@
                     "type": "text",
                     "name": "erspan_collector_ip",
                     "value": "",
-                    "description": "IP address of the ERSPAN Collector."
+                    "description": "Specify the destination IP address of the ERSPAN Collector."
                 }
             ],
             "output_schema": {
@@ -455,7 +458,7 @@
         {
             "operation": "isolate_host",
             "title": "Isolate Host",
-            "description": "Quarantine a Host (Disallow all North/South/East/West inbound and outbound traffic) on the Pensando PSM Server.",
+            "description": "Quarantines on a specific host (disallows all North/South/East/West inbound and outbound traffic) on the Pensando PSM server based on the IP address of the host source IP you have specified.",
             "enabled": true,
             "category": "containment",
             "annotation": "isolate_host",
@@ -468,7 +471,7 @@
                     "type": "text",
                     "name": "host_source_ip",
                     "value": "",
-                    "description": "Source IP of host to isolate."
+                    "description": "Specify the source IP of the host that you want to quarantine on the Pensando PSM server. "
                 }
             ],
             "output_schema": {
@@ -479,7 +482,7 @@
         {
             "operation": "unisolate_host",
             "title": "Unisolate Host",
-            "description": "Remove Host quarantine (Remove North/South/East/West inbound and outbound traffic block) on the Pensando PSM Server.",
+            "description": "Removes the quarantine on a specific host quarantine (Remove North/South/East/West inbound and outbound traffic block) on the Pensando PSM Server based on the IP address of the host source IP you have specified.",
             "enabled": true,
             "category": "remediation",
             "annotation": "unisolate_host",
@@ -492,7 +495,7 @@
                     "type": "text",
                     "name": "host_source_ip",
                     "value": "",
-                    "description": "Source IP of host to unisolate."
+                    "description": "Specify the source IP of the host whose quarantine you want to remove from the Pensando PSM server. "
                 }
             ],
             "output_schema": {
@@ -503,7 +506,7 @@
         {
             "operation": "ioc_block_add_ip",
             "title": "Add IOC IPs to Blocklist",
-            "description": "Add one or more IOC IPs to a block list on the Pensando PSM Server.",
+            "description": "Add one or more specified IOC IPs to a block list on the Pensando PSM Server based on the IOC IP addresses you have specified.",
             "enabled": true,
             "category": "containment",
             "annotation": "ioc_block_add_ip",
@@ -518,7 +521,7 @@
                     "value": "",
                     "tooltip": "comma-separated list or a JSON Array.",
                     "placeholder": "e.g. '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]'",
-                    "description": "IP or IPs to block. Can be a comma-seperated list or a JSON Array. e.g. '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]'"
+                    "description": "Specify the IP addresses that you want to remove from the block list on the Pensando PSM server. You can specify a comma-separated list of a JSON array of IP addresses. For example, '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]' "
                 }
             ],
             "output_schema": {
@@ -529,7 +532,7 @@
         {
             "operation": "ioc_block_remove_ip",
             "title": "Remove IOC IPs from Blocklist",
-            "description": "Remove one or more IOC IPs from a block list on the Pensando PSM Server.",
+            "description": "Removes one or more specified IOC IPs from a block list on the Pensando PSM Server based on the IOC IP addresses you have specified.",
             "enabled": true,
             "category": "remediation",
             "annotation": "ioc_block_remove_ip",
@@ -544,7 +547,7 @@
                     "value": "",
                     "tooltip": "comma-separated list or a JSON Array.",
                     "placeholder": "e.g. '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]'",
-                    "description": "IP or IPs to remove from the blocklist. Can be a comma-seperated list or a JSON Array. e.g. '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]'"
+                    "description": "Specify the IP addresses that you want to remove from the block list on the Pensando PSM server. You can specify a comma-separated list of a JSON array of IP addresses. For example, '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]' "
                 }
             ],
             "output_schema": {
@@ -555,7 +558,7 @@
         {
             "operation": "ioc_delete_list",
             "title": "Remove IOC Blocklist",
-            "description": "Entirely remove the IOC block list from the Pensando PSM Server.",
+            "description": "Removes the complete IOC block list from the Pensando PSM Server.",
             "enabled": true,
             "category": "remediation",
             "annotation": "ioc_delete_list",

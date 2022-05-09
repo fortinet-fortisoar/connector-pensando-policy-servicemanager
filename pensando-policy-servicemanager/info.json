@@ -402,7 +402,7 @@
                     "type": "text",
                     "name": "erspan_match_dest_ip",
                     "value": "",
-                    "description": "Specify the destination IPs to be matched for the mirrored packets. You can specify a comma-separated list of a JSON array of IP addresses. For example, '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]' "
+                    "description": "Specify the destination IPs to be matched for the mirrored packets. You can specify a comma-separated list or a JSON array of IP addresses. For example, '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]' "
                 },
                 {
                     "title": "Match Protocols and Ports",
@@ -413,7 +413,7 @@
                     "name": "erspan_match_protocols",
                     "value": "",
                     "placeholder": "e.g. [\"any\", \"icmp, udp/500\", \"tcp/80-88\"]",
-                    "description": "Specify the protocols and ports or port range to be matched for the mirrored packets. You can specify a comma-separated list of a JSON array of protocols and ports. For example, 'any, icmp, udp/500, tcp/80-88' or '[\"any\", \"icmp, udp/500\", \"tcp/80-88\"]' "
+                    "description": "Specify the protocols and ports or port range to be matched for the mirrored packets. You can specify a comma-separated list or a JSON array of protocols and ports. For example, 'any, icmp, udp/500, tcp/80-88' or '[\"any\", \"icmp, udp/500\", \"tcp/80-88\"]' "
                 }
             ],
             "output_schema": {
@@ -521,7 +521,7 @@
                     "value": "",
                     "tooltip": "comma-separated list or a JSON Array.",
                     "placeholder": "e.g. '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]'",
-                    "description": "Specify the IP addresses that you want to remove from the block list on the Pensando PSM server. You can specify a comma-separated list of a JSON array of IP addresses. For example, '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]' "
+                    "description": "Specify the IP addresses that you want to remove from the block list on the Pensando PSM server. You can specify a comma-separated list or a JSON array of IP addresses. For example, '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]' "
                 }
             ],
             "output_schema": {
@@ -547,7 +547,7 @@
                     "value": "",
                     "tooltip": "comma-separated list or a JSON Array.",
                     "placeholder": "e.g. '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]'",
-                    "description": "Specify the IP addresses that you want to remove from the block list on the Pensando PSM server. You can specify a comma-separated list of a JSON array of IP addresses. For example, '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]' "
+                    "description": "Specify the IP addresses that you want to remove from the block list on the Pensando PSM server. You can specify a comma-separated list or a JSON array of IP addresses. For example, '10.1.1.1, 192.168.1.1' or '[\"10.1.1.1\", \"192.168.1.1\"]' "
                 }
             ],
             "output_schema": {
